@@ -1,0 +1,59 @@
+{
+  "env_name": "grid2d",
+  "agent_name": "planner-llm",
+  "success": true,
+  "num_steps": 22,
+  "summary": [
+    "move around the vertical wall through the lower corridor",
+    "navigate to the key in the upper-right corner",
+    "pick up the key",
+    "return to the locked door in the lower-right corridor",
+    "unlock the door using the key",
+    "move through the door and reach the goal"
+  ],
+  "sample_step": {
+    "observation": {
+      "world_type": "grid_2d",
+      "goal": "Find the key, unlock the door, and reach the goal.",
+      "state": {
+        "position": [1, 11],
+        "inventory": [],
+        "visible_map": [
+          "#############",
+          "#...#......A#",
+          "#.#.#.#####.#",
+          "#.#.........#",
+          "#.#########D#",
+          "#..........G#",
+          "#############"
+        ]
+      }
+    },
+    "decision": {
+      "perception": {
+        "summary": "The agent is on the key tile in the upper-right corner.",
+        "task_relevant_facts": ["The key must be collected before unlocking the door."]
+      },
+      "plan": {
+        "current_subgoal": "collect_key",
+        "next_intent": "The key is nearby.",
+        "success_condition": "The selected tool call moves the agent closer to the goal."
+      },
+      "tool_call": {
+        "name": "pick_up",
+        "args": {
+          "item": "key"
+        }
+      }
+    },
+    "validation": {
+      "approved": true,
+      "reason": "Tool call approved."
+    },
+    "result": {
+      "success": true,
+      "message": "Picked up the key.",
+      "done": false
+    }
+  }
+}

@@ -1,0 +1,3568 @@
+{
+  "env_name": "grid2d",
+  "agent_name": "planner-llm",
+  "success": false,
+  "num_steps": 40,
+  "steps": [
+    {
+      "step": 1,
+      "observation": {
+        "world_type": "grid_2d",
+        "goal": "Find the key, unlock the door, and reach the goal.",
+        "state": {
+          "position": [
+            1,
+            1
+          ],
+          "inventory": [],
+          "visible_map": [
+            "#############",
+            "#A..#......K#",
+            "#.#.#.#####.#",
+            "#.#.........#",
+            "#.#########D#",
+            "#..........G#",
+            "#############"
+          ],
+          "legend": {
+            "A": "agent",
+            "#": "wall",
+            ".": "empty space",
+            "K": "key",
+            "D": "locked door",
+            "G": "goal"
+          }
+        },
+        "valid_actions": [
+          "move_north",
+          "move_south",
+          "move_east",
+          "move_west",
+          "look",
+          "pick_up",
+          "unlock"
+        ],
+        "previous_feedback": null
+      },
+      "decision": {
+        "perception": {
+          "summary": "The agent is located at (1, 1) in a grid environment. There is a key (K) to the east at (1, 10), a locked door (D) to the south at (5, 10), and the goal (G) to the south at (5, 11). The agent currently has no items in its inventory.",
+          "task_relevant_facts": [
+            "The key is located at (1, 10).",
+            "The locked door is located at (5, 10).",
+            "The goal is located at (5, 11)."
+          ]
+        },
+        "plan": {
+          "current_subgoal": "Pick up the key.",
+          "next_intent": "Move east to the key's location and pick it up.",
+          "success_condition": "The agent successfully has the key in its inventory."
+        },
+        "tool_call": {
+          "name": "move",
+          "args": {
+            "direction": "east"
+          }
+        }
+      },
+      "result": {
+        "success": true,
+        "message": "Moved to (1, 2).",
+        "done": false,
+        "reward": 0.0,
+        "info": {}
+      },
+      "validation": {
+        "approved": true,
+        "reason": "Tool call approved."
+      }
+    },
+    {
+      "step": 2,
+      "observation": {
+        "world_type": "grid_2d",
+        "goal": "Find the key, unlock the door, and reach the goal.",
+        "state": {
+          "position": [
+            1,
+            2
+          ],
+          "inventory": [],
+          "visible_map": [
+            "#############",
+            "#.A.#......K#",
+            "#.#.#.#####.#",
+            "#.#.........#",
+            "#.#########D#",
+            "#..........G#",
+            "#############"
+          ],
+          "legend": {
+            "A": "agent",
+            "#": "wall",
+            ".": "empty space",
+            "K": "key",
+            "D": "locked door",
+            "G": "goal"
+          }
+        },
+        "valid_actions": [
+          "move_north",
+          "move_south",
+          "move_east",
+          "move_west",
+          "look",
+          "pick_up",
+          "unlock"
+        ],
+        "previous_feedback": "Moved to (1, 2)."
+      },
+      "decision": {
+        "perception": {
+          "summary": "The agent is currently at position (1, 2) with an empty inventory. The visible map shows a key (K) nearby, a locked door (D), and a goal (G) further down.",
+          "task_relevant_facts": [
+            "The key (K) is located at (1, 8).",
+            "The locked door (D) is located at (5, 8).",
+            "The goal (G) is located at (5, 6)."
+          ]
+        },
+        "plan": {
+          "current_subgoal": "Pick up the key.",
+          "next_intent": "move east to (1, 3) and continue towards the key.",
+          "success_condition": "The agent successfully picks up the key."
+        },
+        "tool_call": {
+          "name": "move",
+          "args": {
+            "direction": "east"
+          }
+        }
+      },
+      "result": {
+        "success": true,
+        "message": "Moved to (1, 3).",
+        "done": false,
+        "reward": 0.0,
+        "info": {}
+      },
+      "validation": {
+        "approved": true,
+        "reason": "Tool call approved."
+      }
+    },
+    {
+      "step": 3,
+      "observation": {
+        "world_type": "grid_2d",
+        "goal": "Find the key, unlock the door, and reach the goal.",
+        "state": {
+          "position": [
+            1,
+            3
+          ],
+          "inventory": [],
+          "visible_map": [
+            "#############",
+            "#..A#......K#",
+            "#.#.#.#####.#",
+            "#.#.........#",
+            "#.#########D#",
+            "#..........G#",
+            "#############"
+          ],
+          "legend": {
+            "A": "agent",
+            "#": "wall",
+            ".": "empty space",
+            "K": "key",
+            "D": "locked door",
+            "G": "goal"
+          }
+        },
+        "valid_actions": [
+          "move_north",
+          "move_south",
+          "move_east",
+          "move_west",
+          "look",
+          "pick_up",
+          "unlock"
+        ],
+        "previous_feedback": "Moved to (1, 3)."
+      },
+      "decision": {
+        "perception": {
+          "summary": "The agent is currently at position (1, 3) and can see the key (K) at (1, 9) and the locked door (D) at (4, 9). The goal (G) is located at (5, 9). The agent has no items in the inventory and has access to various actions including moving and picking up items.",
+          "task_relevant_facts": [
+            "The key (K) is located at (1, 9).",
+            "The locked door (D) is located at (4, 9).",
+            "The goal (G) is located at (5, 9).",
+            "The agent's current position is (1, 3)."
+          ]
+        },
+        "plan": {
+          "current_subgoal": "Pick up the key.",
+          "next_intent": "Move east to the key and pick it up.",
+          "success_condition": "The agent has picked up the key."
+        },
+        "tool_call": {
+          "name": "move",
+          "args": {
+            "direction": "east"
+          }
+        }
+      },
+      "result": {
+        "success": false,
+        "message": "Cannot move east: blocked by a wall.",
+        "done": false,
+        "reward": 0.0,
+        "info": {
+          "observation": {
+            "position": [
+              1,
+              3
+            ],
+            "inventory": [],
+            "visible_map": [
+              "#############",
+              "#..A#......K#",
+              "#.#.#.#####.#",
+              "#.#.........#",
+              "#.#########D#",
+              "#..........G#",
+              "#############"
+            ],
+            "legend": {
+              "A": "agent",
+              "#": "wall",
+              ".": "empty space",
+              "K": "key",
+              "D": "locked door",
+              "G": "goal"
+            }
+          }
+        }
+      },
+      "validation": {
+        "approved": false,
+        "reason": "Cannot move east: blocked by a wall."
+      }
+    },
+    {
+      "step": 4,
+      "observation": {
+        "world_type": "grid_2d",
+        "goal": "Find the key, unlock the door, and reach the goal.",
+        "state": {
+          "position": [
+            1,
+            3
+          ],
+          "inventory": [],
+          "visible_map": [
+            "#############",
+            "#..A#......K#",
+            "#.#.#.#####.#",
+            "#.#.........#",
+            "#.#########D#",
+            "#..........G#",
+            "#############"
+          ],
+          "legend": {
+            "A": "agent",
+            "#": "wall",
+            ".": "empty space",
+            "K": "key",
+            "D": "locked door",
+            "G": "goal"
+          }
+        },
+        "valid_actions": [
+          "move_north",
+          "move_south",
+          "move_east",
+          "move_west",
+          "look",
+          "pick_up",
+          "unlock"
+        ],
+        "previous_feedback": "Cannot move east: blocked by a wall."
+      },
+      "decision": {
+        "perception": {
+          "summary": "The agent is currently at position (1, 3) and can see a key (K) to the east. The agent has no items in the inventory and needs to find the key to unlock the door (D) to reach the goal (G). The east direction is blocked by a wall, but moving south is an option.",
+          "task_relevant_facts": [
+            "Agent position: (1, 3)",
+            "Key is located to the east (blocked by wall)",
+            "Door (D) is located directly south",
+            "Goal (G) is below the door"
+          ]
+        },
+        "plan": {
+          "current_subgoal": "Pick up the key to unlock the door.",
+          "next_intent": "Move south to reach the door and unlock it.",
+          "success_condition": "Agent has the key and has unlocked the door."
+        },
+        "tool_call": {
+          "name": "move",
+          "args": {
+            "direction": "south"
+          }
+        }
+      },
+      "result": {
+        "success": true,
+        "message": "Moved to (2, 3).",
+        "done": false,
+        "reward": 0.0,
+        "info": {}
+      },
+      "validation": {
+        "approved": true,
+        "reason": "Tool call approved."
+      }
+    },
+    {
+      "step": 5,
+      "observation": {
+        "world_type": "grid_2d",
+        "goal": "Find the key, unlock the door, and reach the goal.",
+        "state": {
+          "position": [
+            2,
+            3
+          ],
+          "inventory": [],
+          "visible_map": [
+            "#############",
+            "#...#......K#",
+            "#.#A#.#####.#",
+            "#.#.........#",
+            "#.#########D#",
+            "#..........G#",
+            "#############"
+          ],
+          "legend": {
+            "A": "agent",
+            "#": "wall",
+            ".": "empty space",
+            "K": "key",
+            "D": "locked door",
+            "G": "goal"
+          }
+        },
+        "valid_actions": [
+          "move_north",
+          "move_south",
+          "move_east",
+          "move_west",
+          "look",
+          "pick_up",
+          "unlock"
+        ],
+        "previous_feedback": "Moved to (2, 3)."
+      },
+      "decision": {
+        "perception": {
+          "summary": "The agent is currently at position (2, 3) with no items in inventory. The key (K) is visible at (1, 6), the locked door (D) is located at (5, 6), and the goal (G) is at (5, 7). The agent needs to find the key, unlock the door, and reach the goal.",
+          "task_relevant_facts": [
+            "Agent's current position: (2, 3)",
+            "Key is located at: (1, 6)",
+            "Locked door is located at: (5, 6)",
+            "Goal is located at: (5, 7)",
+            "Agent's inventory is empty."
+          ]
+        },
+        "plan": {
+          "current_subgoal": "Find the key.",
+          "next_intent": "Move towards the key.",
+          "success_condition": "The agent picks up the key."
+        },
+        "tool_call": {
+          "name": "move",
+          "args": {
+            "direction": "east"
+          }
+        }
+      },
+      "result": {
+        "success": false,
+        "message": "Cannot move east: blocked by a wall.",
+        "done": false,
+        "reward": 0.0,
+        "info": {
+          "observation": {
+            "position": [
+              2,
+              3
+            ],
+            "inventory": [],
+            "visible_map": [
+              "#############",
+              "#...#......K#",
+              "#.#A#.#####.#",
+              "#.#.........#",
+              "#.#########D#",
+              "#..........G#",
+              "#############"
+            ],
+            "legend": {
+              "A": "agent",
+              "#": "wall",
+              ".": "empty space",
+              "K": "key",
+              "D": "locked door",
+              "G": "goal"
+            }
+          }
+        }
+      },
+      "validation": {
+        "approved": false,
+        "reason": "Cannot move east: blocked by a wall."
+      }
+    },
+    {
+      "step": 6,
+      "observation": {
+        "world_type": "grid_2d",
+        "goal": "Find the key, unlock the door, and reach the goal.",
+        "state": {
+          "position": [
+            2,
+            3
+          ],
+          "inventory": [],
+          "visible_map": [
+            "#############",
+            "#...#......K#",
+            "#.#A#.#####.#",
+            "#.#.........#",
+            "#.#########D#",
+            "#..........G#",
+            "#############"
+          ],
+          "legend": {
+            "A": "agent",
+            "#": "wall",
+            ".": "empty space",
+            "K": "key",
+            "D": "locked door",
+            "G": "goal"
+          }
+        },
+        "valid_actions": [
+          "move_north",
+          "move_south",
+          "move_east",
+          "move_west",
+          "look",
+          "pick_up",
+          "unlock"
+        ],
+        "previous_feedback": "Cannot move east: blocked by a wall."
+      },
+      "decision": {
+        "perception": {
+          "summary": "The agent is currently located at (2, 3) in a grid-like environment, with a visible map showing walls, an empty space, a key (K), a locked door (D), and a goal (G). The agent has no items in the inventory and the next immediate task is to find and pick up the key.",
+          "task_relevant_facts": [
+            "The key (K) is located at (1, 3).",
+            "The locked door (D) is at (4, 3).",
+            "The goal (G) is at (5, 3).",
+            "The agent cannot move east due to a wall."
+          ]
+        },
+        "plan": {
+          "current_subgoal": "Pick up the key.",
+          "next_intent": "Move to the key's location.",
+          "success_condition": "The agent picks up the key."
+        },
+        "tool_call": {
+          "name": "move",
+          "args": {
+            "direction": "north"
+          }
+        }
+      },
+      "result": {
+        "success": true,
+        "message": "Moved to (1, 3).",
+        "done": false,
+        "reward": 0.0,
+        "info": {}
+      },
+      "validation": {
+        "approved": true,
+        "reason": "Tool call approved."
+      }
+    },
+    {
+      "step": 7,
+      "observation": {
+        "world_type": "grid_2d",
+        "goal": "Find the key, unlock the door, and reach the goal.",
+        "state": {
+          "position": [
+            1,
+            3
+          ],
+          "inventory": [],
+          "visible_map": [
+            "#############",
+            "#..A#......K#",
+            "#.#.#.#####.#",
+            "#.#.........#",
+            "#.#########D#",
+            "#..........G#",
+            "#############"
+          ],
+          "legend": {
+            "A": "agent",
+            "#": "wall",
+            ".": "empty space",
+            "K": "key",
+            "D": "locked door",
+            "G": "goal"
+          }
+        },
+        "valid_actions": [
+          "move_north",
+          "move_south",
+          "move_east",
+          "move_west",
+          "look",
+          "pick_up",
+          "unlock"
+        ],
+        "previous_feedback": "Moved to (1, 3)."
+      },
+      "decision": {
+        "perception": {
+          "summary": "The agent is currently at position (1, 3) with an empty inventory. The visible map shows the key (K) at (1, 10), a locked door (D) at (5, 10), and the goal (G) at (5, 8).",
+          "task_relevant_facts": [
+            "The key is located at (1, 10).",
+            "The locked door is located at (5, 10).",
+            "The goal is located at (5, 8)."
+          ]
+        },
+        "plan": {
+          "current_subgoal": "Pick up the key.",
+          "next_intent": "Move east to the key's position.",
+          "success_condition": "The agent has the key in its inventory."
+        },
+        "tool_call": {
+          "name": "move",
+          "args": {
+            "direction": "east"
+          }
+        }
+      },
+      "result": {
+        "success": false,
+        "message": "Cannot move east: blocked by a wall.",
+        "done": false,
+        "reward": 0.0,
+        "info": {
+          "observation": {
+            "position": [
+              1,
+              3
+            ],
+            "inventory": [],
+            "visible_map": [
+              "#############",
+              "#..A#......K#",
+              "#.#.#.#####.#",
+              "#.#.........#",
+              "#.#########D#",
+              "#..........G#",
+              "#############"
+            ],
+            "legend": {
+              "A": "agent",
+              "#": "wall",
+              ".": "empty space",
+              "K": "key",
+              "D": "locked door",
+              "G": "goal"
+            }
+          }
+        }
+      },
+      "validation": {
+        "approved": false,
+        "reason": "Cannot move east: blocked by a wall."
+      }
+    },
+    {
+      "step": 8,
+      "observation": {
+        "world_type": "grid_2d",
+        "goal": "Find the key, unlock the door, and reach the goal.",
+        "state": {
+          "position": [
+            1,
+            3
+          ],
+          "inventory": [],
+          "visible_map": [
+            "#############",
+            "#..A#......K#",
+            "#.#.#.#####.#",
+            "#.#.........#",
+            "#.#########D#",
+            "#..........G#",
+            "#############"
+          ],
+          "legend": {
+            "A": "agent",
+            "#": "wall",
+            ".": "empty space",
+            "K": "key",
+            "D": "locked door",
+            "G": "goal"
+          }
+        },
+        "valid_actions": [
+          "move_north",
+          "move_south",
+          "move_east",
+          "move_west",
+          "look",
+          "pick_up",
+          "unlock"
+        ],
+        "previous_feedback": "Cannot move east: blocked by a wall."
+      },
+      "decision": {
+        "perception": {
+          "summary": "The agent is at position (1, 3) on a grid and is surrounded by walls. The key is located at (1, 10), the locked door is at (5, 10), and the goal is at (5, 11). The agent needs to find the key first before unlocking the door.",
+          "task_relevant_facts": [
+            "Agent's current position is (1, 3).",
+            "Key is located at (1, 10).",
+            "Locked door is at (5, 10).",
+            "Goal is at (5, 11)."
+          ]
+        },
+        "plan": {
+          "current_subgoal": "Find the key.",
+          "next_intent": "Move towards the key at (1, 10).",
+          "success_condition": "Agent picks up the key."
+        },
+        "tool_call": {
+          "name": "move",
+          "args": {
+            "direction": "east"
+          }
+        }
+      },
+      "result": {
+        "success": false,
+        "message": "Cannot move east: blocked by a wall.",
+        "done": false,
+        "reward": 0.0,
+        "info": {
+          "observation": {
+            "position": [
+              1,
+              3
+            ],
+            "inventory": [],
+            "visible_map": [
+              "#############",
+              "#..A#......K#",
+              "#.#.#.#####.#",
+              "#.#.........#",
+              "#.#########D#",
+              "#..........G#",
+              "#############"
+            ],
+            "legend": {
+              "A": "agent",
+              "#": "wall",
+              ".": "empty space",
+              "K": "key",
+              "D": "locked door",
+              "G": "goal"
+            }
+          }
+        }
+      },
+      "validation": {
+        "approved": false,
+        "reason": "Cannot move east: blocked by a wall."
+      }
+    },
+    {
+      "step": 9,
+      "observation": {
+        "world_type": "grid_2d",
+        "goal": "Find the key, unlock the door, and reach the goal.",
+        "state": {
+          "position": [
+            1,
+            3
+          ],
+          "inventory": [],
+          "visible_map": [
+            "#############",
+            "#..A#......K#",
+            "#.#.#.#####.#",
+            "#.#.........#",
+            "#.#########D#",
+            "#..........G#",
+            "#############"
+          ],
+          "legend": {
+            "A": "agent",
+            "#": "wall",
+            ".": "empty space",
+            "K": "key",
+            "D": "locked door",
+            "G": "goal"
+          }
+        },
+        "valid_actions": [
+          "move_north",
+          "move_south",
+          "move_east",
+          "move_west",
+          "look",
+          "pick_up",
+          "unlock"
+        ],
+        "previous_feedback": "Cannot move east: blocked by a wall."
+      },
+      "decision": {
+        "perception": {
+          "summary": "The agent is currently at position (1, 3) and can see the key (K) at (1, 10) and the locked door (D) at (5, 10). It has no items in its inventory and is blocked from moving east by a wall.",
+          "task_relevant_facts": [
+            "The key is located at (1, 10)",
+            "The locked door is located at (5, 10)",
+            "The agent is currently at (1, 3) and can move north, south, or west."
+          ]
+        },
+        "plan": {
+          "current_subgoal": "Move towards the key to pick it up.",
+          "next_intent": "Move east towards the key's location.",
+          "success_condition": "The agent successfully picks up the key."
+        },
+        "tool_call": {
+          "name": "move",
+          "args": {
+            "direction": "south"
+          }
+        }
+      },
+      "result": {
+        "success": true,
+        "message": "Moved to (2, 3).",
+        "done": false,
+        "reward": 0.0,
+        "info": {}
+      },
+      "validation": {
+        "approved": true,
+        "reason": "Tool call approved."
+      }
+    },
+    {
+      "step": 10,
+      "observation": {
+        "world_type": "grid_2d",
+        "goal": "Find the key, unlock the door, and reach the goal.",
+        "state": {
+          "position": [
+            2,
+            3
+          ],
+          "inventory": [],
+          "visible_map": [
+            "#############",
+            "#...#......K#",
+            "#.#A#.#####.#",
+            "#.#.........#",
+            "#.#########D#",
+            "#..........G#",
+            "#############"
+          ],
+          "legend": {
+            "A": "agent",
+            "#": "wall",
+            ".": "empty space",
+            "K": "key",
+            "D": "locked door",
+            "G": "goal"
+          }
+        },
+        "valid_actions": [
+          "move_north",
+          "move_south",
+          "move_east",
+          "move_west",
+          "look",
+          "pick_up",
+          "unlock"
+        ],
+        "previous_feedback": "Moved to (2, 3)."
+      },
+      "decision": {
+        "perception": {
+          "summary": "The agent is at position (2, 3) and can see the key (K) to the east and the locked door (D) below it. The goal (G) is further down.",
+          "task_relevant_facts": [
+            "The key (K) is located at (2, 4).",
+            "The locked door (D) is located at (4, 4).",
+            "The goal (G) is located at (5, 4)."
+          ]
+        },
+        "plan": {
+          "current_subgoal": "Pick up the key.",
+          "next_intent": "Move east to the key and pick it up.",
+          "success_condition": "The key is in the inventory."
+        },
+        "tool_call": {
+          "name": "move",
+          "args": {
+            "direction": "east"
+          }
+        }
+      },
+      "result": {
+        "success": false,
+        "message": "Cannot move east: blocked by a wall.",
+        "done": false,
+        "reward": 0.0,
+        "info": {
+          "observation": {
+            "position": [
+              2,
+              3
+            ],
+            "inventory": [],
+            "visible_map": [
+              "#############",
+              "#...#......K#",
+              "#.#A#.#####.#",
+              "#.#.........#",
+              "#.#########D#",
+              "#..........G#",
+              "#############"
+            ],
+            "legend": {
+              "A": "agent",
+              "#": "wall",
+              ".": "empty space",
+              "K": "key",
+              "D": "locked door",
+              "G": "goal"
+            }
+          }
+        }
+      },
+      "validation": {
+        "approved": false,
+        "reason": "Cannot move east: blocked by a wall."
+      }
+    },
+    {
+      "step": 11,
+      "observation": {
+        "world_type": "grid_2d",
+        "goal": "Find the key, unlock the door, and reach the goal.",
+        "state": {
+          "position": [
+            2,
+            3
+          ],
+          "inventory": [],
+          "visible_map": [
+            "#############",
+            "#...#......K#",
+            "#.#A#.#####.#",
+            "#.#.........#",
+            "#.#########D#",
+            "#..........G#",
+            "#############"
+          ],
+          "legend": {
+            "A": "agent",
+            "#": "wall",
+            ".": "empty space",
+            "K": "key",
+            "D": "locked door",
+            "G": "goal"
+          }
+        },
+        "valid_actions": [
+          "move_north",
+          "move_south",
+          "move_east",
+          "move_west",
+          "look",
+          "pick_up",
+          "unlock"
+        ],
+        "previous_feedback": "Cannot move east: blocked by a wall."
+      },
+      "decision": {
+        "perception": {
+          "summary": "The agent is at position (2, 3) in a grid where the key (K) is visible to the east, the locked door (D) is further down, and the goal (G) is located below the door. The agent cannot move east due to a wall.",
+          "task_relevant_facts": [
+            "Agent's current position is (2, 3).",
+            "Key (K) is located at (1, 10).",
+            "Locked door (D) is located at (5, 10).",
+            "Goal (G) is located at (6, 10).",
+            "Agent cannot move east due to a wall."
+          ]
+        },
+        "plan": {
+          "current_subgoal": "Pick up the key.",
+          "next_intent": "Move to the key's position and pick it up.",
+          "success_condition": "The key is in the agent's inventory."
+        },
+        "tool_call": {
+          "name": "move",
+          "args": {
+            "direction": "south"
+          }
+        }
+      },
+      "result": {
+        "success": true,
+        "message": "Moved to (3, 3).",
+        "done": false,
+        "reward": 0.0,
+        "info": {}
+      },
+      "validation": {
+        "approved": true,
+        "reason": "Tool call approved."
+      }
+    },
+    {
+      "step": 12,
+      "observation": {
+        "world_type": "grid_2d",
+        "goal": "Find the key, unlock the door, and reach the goal.",
+        "state": {
+          "position": [
+            3,
+            3
+          ],
+          "inventory": [],
+          "visible_map": [
+            "#############",
+            "#...#......K#",
+            "#.#.#.#####.#",
+            "#.#A........#",
+            "#.#########D#",
+            "#..........G#",
+            "#############"
+          ],
+          "legend": {
+            "A": "agent",
+            "#": "wall",
+            ".": "empty space",
+            "K": "key",
+            "D": "locked door",
+            "G": "goal"
+          }
+        },
+        "valid_actions": [
+          "move_north",
+          "move_south",
+          "move_east",
+          "move_west",
+          "look",
+          "pick_up",
+          "unlock"
+        ],
+        "previous_feedback": "Moved to (3, 3)."
+      },
+      "decision": {
+        "perception": {
+          "summary": "The agent is currently at position (3, 3) and there is a key (K) to the northeast at (1, 9) and a locked door (D) to the south at (5, 9). The goal (G) is also to the southeast at (5, 8).",
+          "task_relevant_facts": [
+            "The key (K) is located at (1, 9).",
+            "The locked door (D) is located at (5, 9).",
+            "The goal (G) is located at (5, 8)."
+          ]
+        },
+        "plan": {
+          "current_subgoal": "Retrieve the key first.",
+          "next_intent": "Move towards the key.",
+          "success_condition": "The agent has picked up the key."
+        },
+        "tool_call": {
+          "name": "move",
+          "args": {
+            "direction": "east"
+          }
+        }
+      },
+      "result": {
+        "success": true,
+        "message": "Moved to (3, 4).",
+        "done": false,
+        "reward": 0.0,
+        "info": {}
+      },
+      "validation": {
+        "approved": true,
+        "reason": "Tool call approved."
+      }
+    },
+    {
+      "step": 13,
+      "observation": {
+        "world_type": "grid_2d",
+        "goal": "Find the key, unlock the door, and reach the goal.",
+        "state": {
+          "position": [
+            3,
+            4
+          ],
+          "inventory": [],
+          "visible_map": [
+            "#############",
+            "#...#......K#",
+            "#.#.#.#####.#",
+            "#.#.A.......#",
+            "#.#########D#",
+            "#..........G#",
+            "#############"
+          ],
+          "legend": {
+            "A": "agent",
+            "#": "wall",
+            ".": "empty space",
+            "K": "key",
+            "D": "locked door",
+            "G": "goal"
+          }
+        },
+        "valid_actions": [
+          "move_north",
+          "move_south",
+          "move_east",
+          "move_west",
+          "look",
+          "pick_up",
+          "unlock"
+        ],
+        "previous_feedback": "Moved to (3, 4)."
+      },
+      "decision": {
+        "perception": {
+          "summary": "The agent is currently at position (3, 4) and can see the key (K) at (1, 4), the locked door (D) at (4, 9), and the goal (G) at (5, 9). The agent has no items in its inventory yet.",
+          "task_relevant_facts": [
+            "Agent position: (3, 4)",
+            "Key located at (1, 4)",
+            "Locked door located at (4, 9)",
+            "Goal located at (5, 9)"
+          ]
+        },
+        "plan": {
+          "current_subgoal": "Find the key",
+          "next_intent": "Move towards the key at (1, 4)",
+          "success_condition": "The agent retrieves the key and adds it to the inventory."
+        },
+        "tool_call": {
+          "name": "move",
+          "args": {
+            "direction": "north"
+          }
+        }
+      },
+      "result": {
+        "success": false,
+        "message": "Cannot move north: blocked by a wall.",
+        "done": false,
+        "reward": 0.0,
+        "info": {
+          "observation": {
+            "position": [
+              3,
+              4
+            ],
+            "inventory": [],
+            "visible_map": [
+              "#############",
+              "#...#......K#",
+              "#.#.#.#####.#",
+              "#.#.A.......#",
+              "#.#########D#",
+              "#..........G#",
+              "#############"
+            ],
+            "legend": {
+              "A": "agent",
+              "#": "wall",
+              ".": "empty space",
+              "K": "key",
+              "D": "locked door",
+              "G": "goal"
+            }
+          }
+        }
+      },
+      "validation": {
+        "approved": false,
+        "reason": "Cannot move north: blocked by a wall."
+      }
+    },
+    {
+      "step": 14,
+      "observation": {
+        "world_type": "grid_2d",
+        "goal": "Find the key, unlock the door, and reach the goal.",
+        "state": {
+          "position": [
+            3,
+            4
+          ],
+          "inventory": [],
+          "visible_map": [
+            "#############",
+            "#...#......K#",
+            "#.#.#.#####.#",
+            "#.#.A.......#",
+            "#.#########D#",
+            "#..........G#",
+            "#############"
+          ],
+          "legend": {
+            "A": "agent",
+            "#": "wall",
+            ".": "empty space",
+            "K": "key",
+            "D": "locked door",
+            "G": "goal"
+          }
+        },
+        "valid_actions": [
+          "move_north",
+          "move_south",
+          "move_east",
+          "move_west",
+          "look",
+          "pick_up",
+          "unlock"
+        ],
+        "previous_feedback": "Cannot move north: blocked by a wall."
+      },
+      "decision": {
+        "perception": {
+          "summary": "The agent is currently at position (3, 4) in a grid environment. The key is located at (1, 4), the locked door is at (4, 9), and the goal is at (5, 8). The agent cannot move north due to a wall.",
+          "task_relevant_facts": [
+            "Agent's current position: (3, 4)",
+            "Key location: (1, 4)",
+            "Locked door location: (4, 9)",
+            "Goal location: (5, 8)",
+            "Agent's inventory is empty."
+          ]
+        },
+        "plan": {
+          "current_subgoal": "Find the key.",
+          "next_intent": "Move towards the key.",
+          "success_condition": "The agent has the key in its inventory."
+        },
+        "tool_call": {
+          "name": "move",
+          "args": {
+            "direction": "west"
+          }
+        }
+      },
+      "result": {
+        "success": true,
+        "message": "Moved to (3, 3).",
+        "done": false,
+        "reward": 0.0,
+        "info": {}
+      },
+      "validation": {
+        "approved": true,
+        "reason": "Tool call approved."
+      }
+    },
+    {
+      "step": 15,
+      "observation": {
+        "world_type": "grid_2d",
+        "goal": "Find the key, unlock the door, and reach the goal.",
+        "state": {
+          "position": [
+            3,
+            3
+          ],
+          "inventory": [],
+          "visible_map": [
+            "#############",
+            "#...#......K#",
+            "#.#.#.#####.#",
+            "#.#A........#",
+            "#.#########D#",
+            "#..........G#",
+            "#############"
+          ],
+          "legend": {
+            "A": "agent",
+            "#": "wall",
+            ".": "empty space",
+            "K": "key",
+            "D": "locked door",
+            "G": "goal"
+          }
+        },
+        "valid_actions": [
+          "move_north",
+          "move_south",
+          "move_east",
+          "move_west",
+          "look",
+          "pick_up",
+          "unlock"
+        ],
+        "previous_feedback": "Moved to (3, 3)."
+      },
+      "decision": {
+        "perception": {
+          "summary": "The agent is currently at position (3, 3) and has no items in its inventory. The visible map shows the key (K) at (1, 3), a locked door (D) at (4, 9), and the goal (G) at (5, 9).",
+          "task_relevant_facts": [
+            "Agent is at (3, 3).",
+            "Key (K) is at (1, 3).",
+            "Locked door (D) is at (4, 9).",
+            "Goal (G) is at (5, 9)."
+          ]
+        },
+        "plan": {
+          "current_subgoal": "Find the key.",
+          "next_intent": "Move towards the key at (1, 3).",
+          "success_condition": "The agent picks up the key."
+        },
+        "tool_call": {
+          "name": "move",
+          "args": {
+            "direction": "north"
+          }
+        }
+      },
+      "result": {
+        "success": true,
+        "message": "Moved to (2, 3).",
+        "done": false,
+        "reward": 0.0,
+        "info": {}
+      },
+      "validation": {
+        "approved": true,
+        "reason": "Tool call approved."
+      }
+    },
+    {
+      "step": 16,
+      "observation": {
+        "world_type": "grid_2d",
+        "goal": "Find the key, unlock the door, and reach the goal.",
+        "state": {
+          "position": [
+            2,
+            3
+          ],
+          "inventory": [],
+          "visible_map": [
+            "#############",
+            "#...#......K#",
+            "#.#A#.#####.#",
+            "#.#.........#",
+            "#.#########D#",
+            "#..........G#",
+            "#############"
+          ],
+          "legend": {
+            "A": "agent",
+            "#": "wall",
+            ".": "empty space",
+            "K": "key",
+            "D": "locked door",
+            "G": "goal"
+          }
+        },
+        "valid_actions": [
+          "move_north",
+          "move_south",
+          "move_east",
+          "move_west",
+          "look",
+          "pick_up",
+          "unlock"
+        ],
+        "previous_feedback": "Moved to (2, 3)."
+      },
+      "decision": {
+        "perception": {
+          "summary": "The agent is currently at position (2, 3) and can see the key (K) at (1, 9), the locked door (D) at (4, 9), and the goal (G) at (5, 9). The agent has no items in its inventory.",
+          "task_relevant_facts": [
+            "The key is located at (1, 9).",
+            "The locked door is located at (4, 9).",
+            "The goal is located at (5, 9)."
+          ]
+        },
+        "plan": {
+          "current_subgoal": "Pick up the key.",
+          "next_intent": "Move towards the key.",
+          "success_condition": "The agent has the key in its inventory."
+        },
+        "tool_call": {
+          "name": "move",
+          "args": {
+            "direction": "east"
+          }
+        }
+      },
+      "result": {
+        "success": false,
+        "message": "Cannot move east: blocked by a wall.",
+        "done": false,
+        "reward": 0.0,
+        "info": {
+          "observation": {
+            "position": [
+              2,
+              3
+            ],
+            "inventory": [],
+            "visible_map": [
+              "#############",
+              "#...#......K#",
+              "#.#A#.#####.#",
+              "#.#.........#",
+              "#.#########D#",
+              "#..........G#",
+              "#############"
+            ],
+            "legend": {
+              "A": "agent",
+              "#": "wall",
+              ".": "empty space",
+              "K": "key",
+              "D": "locked door",
+              "G": "goal"
+            }
+          }
+        }
+      },
+      "validation": {
+        "approved": false,
+        "reason": "Cannot move east: blocked by a wall."
+      }
+    },
+    {
+      "step": 17,
+      "observation": {
+        "world_type": "grid_2d",
+        "goal": "Find the key, unlock the door, and reach the goal.",
+        "state": {
+          "position": [
+            2,
+            3
+          ],
+          "inventory": [],
+          "visible_map": [
+            "#############",
+            "#...#......K#",
+            "#.#A#.#####.#",
+            "#.#.........#",
+            "#.#########D#",
+            "#..........G#",
+            "#############"
+          ],
+          "legend": {
+            "A": "agent",
+            "#": "wall",
+            ".": "empty space",
+            "K": "key",
+            "D": "locked door",
+            "G": "goal"
+          }
+        },
+        "valid_actions": [
+          "move_north",
+          "move_south",
+          "move_east",
+          "move_west",
+          "look",
+          "pick_up",
+          "unlock"
+        ],
+        "previous_feedback": "Cannot move east: blocked by a wall."
+      },
+      "decision": {
+        "perception": {
+          "summary": "The agent is currently at position (2, 3) on a grid. It can see the key (K) to the east, a locked door (D) to the south, and the goal (G) further down. The agent has no items in its inventory and is unable to move east due to a wall. The next steps involve picking up the key and unlocking the door.",
+          "task_relevant_facts": [
+            "Agent's current position is (2, 3)",
+            "Key is located at (2, 4)",
+            "Locked door is at (4, 4)",
+            "Goal is at (5, 4)"
+          ]
+        },
+        "plan": {
+          "current_subgoal": "Pick up the key",
+          "next_intent": "Move east to grab the key",
+          "success_condition": "Key is added to the inventory"
+        },
+        "tool_call": {
+          "name": "move",
+          "args": {
+            "direction": "east"
+          }
+        }
+      },
+      "result": {
+        "success": false,
+        "message": "Cannot move east: blocked by a wall.",
+        "done": false,
+        "reward": 0.0,
+        "info": {
+          "observation": {
+            "position": [
+              2,
+              3
+            ],
+            "inventory": [],
+            "visible_map": [
+              "#############",
+              "#...#......K#",
+              "#.#A#.#####.#",
+              "#.#.........#",
+              "#.#########D#",
+              "#..........G#",
+              "#############"
+            ],
+            "legend": {
+              "A": "agent",
+              "#": "wall",
+              ".": "empty space",
+              "K": "key",
+              "D": "locked door",
+              "G": "goal"
+            }
+          }
+        }
+      },
+      "validation": {
+        "approved": false,
+        "reason": "Cannot move east: blocked by a wall."
+      }
+    },
+    {
+      "step": 18,
+      "observation": {
+        "world_type": "grid_2d",
+        "goal": "Find the key, unlock the door, and reach the goal.",
+        "state": {
+          "position": [
+            2,
+            3
+          ],
+          "inventory": [],
+          "visible_map": [
+            "#############",
+            "#...#......K#",
+            "#.#A#.#####.#",
+            "#.#.........#",
+            "#.#########D#",
+            "#..........G#",
+            "#############"
+          ],
+          "legend": {
+            "A": "agent",
+            "#": "wall",
+            ".": "empty space",
+            "K": "key",
+            "D": "locked door",
+            "G": "goal"
+          }
+        },
+        "valid_actions": [
+          "move_north",
+          "move_south",
+          "move_east",
+          "move_west",
+          "look",
+          "pick_up",
+          "unlock"
+        ],
+        "previous_feedback": "Cannot move east: blocked by a wall."
+      },
+      "decision": {
+        "perception": {
+          "summary": "The agent is at position (2, 3) in a grid where the key (K) is located at (1, 10), a locked door (D) is at (5, 10), and the goal (G) is at (5, 12). The agent has no items in the inventory.",
+          "task_relevant_facts": [
+            "Key (K) is located at (1, 10)",
+            "Locked door (D) is located at (5, 10)",
+            "Goal (G) is located at (5, 12)",
+            "Agent's current position is (2, 3)",
+            "Agent has no items in inventory"
+          ]
+        },
+        "plan": {
+          "current_subgoal": "Pick up the key.",
+          "next_intent": "Move towards the key.",
+          "success_condition": "The agent has the key in its inventory."
+        },
+        "tool_call": {
+          "name": "move",
+          "args": {
+            "direction": "east"
+          }
+        }
+      },
+      "result": {
+        "success": false,
+        "message": "Cannot move east: blocked by a wall.",
+        "done": false,
+        "reward": 0.0,
+        "info": {
+          "observation": {
+            "position": [
+              2,
+              3
+            ],
+            "inventory": [],
+            "visible_map": [
+              "#############",
+              "#...#......K#",
+              "#.#A#.#####.#",
+              "#.#.........#",
+              "#.#########D#",
+              "#..........G#",
+              "#############"
+            ],
+            "legend": {
+              "A": "agent",
+              "#": "wall",
+              ".": "empty space",
+              "K": "key",
+              "D": "locked door",
+              "G": "goal"
+            }
+          }
+        }
+      },
+      "validation": {
+        "approved": false,
+        "reason": "Cannot move east: blocked by a wall."
+      }
+    },
+    {
+      "step": 19,
+      "observation": {
+        "world_type": "grid_2d",
+        "goal": "Find the key, unlock the door, and reach the goal.",
+        "state": {
+          "position": [
+            2,
+            3
+          ],
+          "inventory": [],
+          "visible_map": [
+            "#############",
+            "#...#......K#",
+            "#.#A#.#####.#",
+            "#.#.........#",
+            "#.#########D#",
+            "#..........G#",
+            "#############"
+          ],
+          "legend": {
+            "A": "agent",
+            "#": "wall",
+            ".": "empty space",
+            "K": "key",
+            "D": "locked door",
+            "G": "goal"
+          }
+        },
+        "valid_actions": [
+          "move_north",
+          "move_south",
+          "move_east",
+          "move_west",
+          "look",
+          "pick_up",
+          "unlock"
+        ],
+        "previous_feedback": "Cannot move east: blocked by a wall."
+      },
+      "decision": {
+        "perception": {
+          "summary": "The agent is currently at position (2, 3) on a 2D grid. The key is located to the east at (2, 4), and the locked door is to the south at (4, 5). The agent does not have any items in the inventory and cannot move east due to a wall.",
+          "task_relevant_facts": [
+            "The key is located at (2, 4).",
+            "The locked door is located at (4, 5).",
+            "The agent is currently at (2, 3) and cannot move east."
+          ]
+        },
+        "plan": {
+          "current_subgoal": "Pick up the key.",
+          "next_intent": "Move to (2, 4) and pick up the key.",
+          "success_condition": "The agent successfully picks up the key."
+        },
+        "tool_call": {
+          "name": "move",
+          "args": {
+            "direction": "south"
+          }
+        }
+      },
+      "result": {
+        "success": true,
+        "message": "Moved to (3, 3).",
+        "done": false,
+        "reward": 0.0,
+        "info": {}
+      },
+      "validation": {
+        "approved": true,
+        "reason": "Tool call approved."
+      }
+    },
+    {
+      "step": 20,
+      "observation": {
+        "world_type": "grid_2d",
+        "goal": "Find the key, unlock the door, and reach the goal.",
+        "state": {
+          "position": [
+            3,
+            3
+          ],
+          "inventory": [],
+          "visible_map": [
+            "#############",
+            "#...#......K#",
+            "#.#.#.#####.#",
+            "#.#A........#",
+            "#.#########D#",
+            "#..........G#",
+            "#############"
+          ],
+          "legend": {
+            "A": "agent",
+            "#": "wall",
+            ".": "empty space",
+            "K": "key",
+            "D": "locked door",
+            "G": "goal"
+          }
+        },
+        "valid_actions": [
+          "move_north",
+          "move_south",
+          "move_east",
+          "move_west",
+          "look",
+          "pick_up",
+          "unlock"
+        ],
+        "previous_feedback": "Moved to (3, 3)."
+      },
+      "decision": {
+        "perception": {
+          "summary": "The agent is currently positioned at (3, 3) and the key (K) is located at (1, 9). There is a locked door (D) at (5, 9) and the goal (G) is at (6, 9). The agent's inventory is empty.",
+          "task_relevant_facts": [
+            "Agent position: (3, 3)",
+            "Key position: (1, 9)",
+            "Locked door position: (5, 9)",
+            "Goal position: (6, 9)",
+            "Inventory is empty"
+          ]
+        },
+        "plan": {
+          "current_subgoal": "Find and pick up the key.",
+          "next_intent": "Move toward the key.",
+          "success_condition": "The agent has picked up the key."
+        },
+        "tool_call": {
+          "name": "move",
+          "args": {
+            "direction": "west"
+          }
+        }
+      },
+      "result": {
+        "success": false,
+        "message": "Cannot move west: blocked by a wall.",
+        "done": false,
+        "reward": 0.0,
+        "info": {
+          "observation": {
+            "position": [
+              3,
+              3
+            ],
+            "inventory": [],
+            "visible_map": [
+              "#############",
+              "#...#......K#",
+              "#.#.#.#####.#",
+              "#.#A........#",
+              "#.#########D#",
+              "#..........G#",
+              "#############"
+            ],
+            "legend": {
+              "A": "agent",
+              "#": "wall",
+              ".": "empty space",
+              "K": "key",
+              "D": "locked door",
+              "G": "goal"
+            }
+          }
+        }
+      },
+      "validation": {
+        "approved": false,
+        "reason": "Cannot move west: blocked by a wall."
+      }
+    },
+    {
+      "step": 21,
+      "observation": {
+        "world_type": "grid_2d",
+        "goal": "Find the key, unlock the door, and reach the goal.",
+        "state": {
+          "position": [
+            3,
+            3
+          ],
+          "inventory": [],
+          "visible_map": [
+            "#############",
+            "#...#......K#",
+            "#.#.#.#####.#",
+            "#.#A........#",
+            "#.#########D#",
+            "#..........G#",
+            "#############"
+          ],
+          "legend": {
+            "A": "agent",
+            "#": "wall",
+            ".": "empty space",
+            "K": "key",
+            "D": "locked door",
+            "G": "goal"
+          }
+        },
+        "valid_actions": [
+          "move_north",
+          "move_south",
+          "move_east",
+          "move_west",
+          "look",
+          "pick_up",
+          "unlock"
+        ],
+        "previous_feedback": "Cannot move west: blocked by a wall."
+      },
+      "decision": {
+        "perception": {
+          "summary": "The agent is currently at position (3,3). The visible map shows a key (K) at (1,10), a locked door (D) at (4,10), and a goal (G) at (5,10). The agent has no items in the inventory.",
+          "task_relevant_facts": [
+            "The key is located at (1,10).",
+            "The locked door is at (4,10).",
+            "The goal is at (5,10).",
+            "The agent is currently at (3,3) and cannot move west due to a wall."
+          ]
+        },
+        "plan": {
+          "current_subgoal": "Find the key.",
+          "next_intent": "Move towards the key.",
+          "success_condition": "The agent reaches the key at (1,10)."
+        },
+        "tool_call": {
+          "name": "move",
+          "args": {
+            "direction": "north"
+          }
+        }
+      },
+      "result": {
+        "success": true,
+        "message": "Moved to (2, 3).",
+        "done": false,
+        "reward": 0.0,
+        "info": {}
+      },
+      "validation": {
+        "approved": true,
+        "reason": "Tool call approved."
+      }
+    },
+    {
+      "step": 22,
+      "observation": {
+        "world_type": "grid_2d",
+        "goal": "Find the key, unlock the door, and reach the goal.",
+        "state": {
+          "position": [
+            2,
+            3
+          ],
+          "inventory": [],
+          "visible_map": [
+            "#############",
+            "#...#......K#",
+            "#.#A#.#####.#",
+            "#.#.........#",
+            "#.#########D#",
+            "#..........G#",
+            "#############"
+          ],
+          "legend": {
+            "A": "agent",
+            "#": "wall",
+            ".": "empty space",
+            "K": "key",
+            "D": "locked door",
+            "G": "goal"
+          }
+        },
+        "valid_actions": [
+          "move_north",
+          "move_south",
+          "move_east",
+          "move_west",
+          "look",
+          "pick_up",
+          "unlock"
+        ],
+        "previous_feedback": "Moved to (2, 3)."
+      },
+      "decision": {
+        "perception": {
+          "summary": "The agent is currently at position (2, 3) with an empty inventory. The key (K) is visible at (1, 3), the locked door (D) is at (4, 8), and the goal (G) is at (5, 8).",
+          "task_relevant_facts": [
+            "Current position: (2, 3)",
+            "Key (K) is at (1, 3)",
+            "Locked door (D) is at (4, 8)",
+            "Goal (G) is at (5, 8)"
+          ]
+        },
+        "plan": {
+          "current_subgoal": "Pick up the key.",
+          "next_intent": "Move to the position of the key at (1, 3) and then pick it up.",
+          "success_condition": "The key is in the inventory."
+        },
+        "tool_call": {
+          "name": "move",
+          "args": {
+            "direction": "north"
+          }
+        }
+      },
+      "result": {
+        "success": true,
+        "message": "Moved to (1, 3).",
+        "done": false,
+        "reward": 0.0,
+        "info": {}
+      },
+      "validation": {
+        "approved": true,
+        "reason": "Tool call approved."
+      }
+    },
+    {
+      "step": 23,
+      "observation": {
+        "world_type": "grid_2d",
+        "goal": "Find the key, unlock the door, and reach the goal.",
+        "state": {
+          "position": [
+            1,
+            3
+          ],
+          "inventory": [],
+          "visible_map": [
+            "#############",
+            "#..A#......K#",
+            "#.#.#.#####.#",
+            "#.#.........#",
+            "#.#########D#",
+            "#..........G#",
+            "#############"
+          ],
+          "legend": {
+            "A": "agent",
+            "#": "wall",
+            ".": "empty space",
+            "K": "key",
+            "D": "locked door",
+            "G": "goal"
+          }
+        },
+        "valid_actions": [
+          "move_north",
+          "move_south",
+          "move_east",
+          "move_west",
+          "look",
+          "pick_up",
+          "unlock"
+        ],
+        "previous_feedback": "Moved to (1, 3)."
+      },
+      "decision": {
+        "perception": {
+          "summary": "The agent is currently at position (1, 3) and needs to find a key (K) located to the east at (1, 9) in order to unlock a door (D) at (5, 9) and reach the goal (G) at (5, 8).",
+          "task_relevant_facts": [
+            "Agent's current position is (1, 3).",
+            "Key is located at (1, 9).",
+            "Locked door is located at (5, 9).",
+            "Goal is located at (5, 8)."
+          ]
+        },
+        "plan": {
+          "current_subgoal": "Move towards the key to pick it up.",
+          "next_intent": "Pick up the key after reaching it.",
+          "success_condition": "Agent reaches the key at (1, 9) and picks it up."
+        },
+        "tool_call": {
+          "name": "move",
+          "args": {
+            "direction": "east"
+          }
+        }
+      },
+      "result": {
+        "success": false,
+        "message": "Cannot move east: blocked by a wall.",
+        "done": false,
+        "reward": 0.0,
+        "info": {
+          "observation": {
+            "position": [
+              1,
+              3
+            ],
+            "inventory": [],
+            "visible_map": [
+              "#############",
+              "#..A#......K#",
+              "#.#.#.#####.#",
+              "#.#.........#",
+              "#.#########D#",
+              "#..........G#",
+              "#############"
+            ],
+            "legend": {
+              "A": "agent",
+              "#": "wall",
+              ".": "empty space",
+              "K": "key",
+              "D": "locked door",
+              "G": "goal"
+            }
+          }
+        }
+      },
+      "validation": {
+        "approved": false,
+        "reason": "Cannot move east: blocked by a wall."
+      }
+    },
+    {
+      "step": 24,
+      "observation": {
+        "world_type": "grid_2d",
+        "goal": "Find the key, unlock the door, and reach the goal.",
+        "state": {
+          "position": [
+            1,
+            3
+          ],
+          "inventory": [],
+          "visible_map": [
+            "#############",
+            "#..A#......K#",
+            "#.#.#.#####.#",
+            "#.#.........#",
+            "#.#########D#",
+            "#..........G#",
+            "#############"
+          ],
+          "legend": {
+            "A": "agent",
+            "#": "wall",
+            ".": "empty space",
+            "K": "key",
+            "D": "locked door",
+            "G": "goal"
+          }
+        },
+        "valid_actions": [
+          "move_north",
+          "move_south",
+          "move_east",
+          "move_west",
+          "look",
+          "pick_up",
+          "unlock"
+        ],
+        "previous_feedback": "Cannot move east: blocked by a wall."
+      },
+      "decision": {
+        "perception": {
+          "summary": "The agent is located at position (1, 3) on a 2D grid environment. The key is located at (1, 10) and the locked door is at (4, 10), while the goal is at (5, 10). The agent currently does not have any items in its inventory.",
+          "task_relevant_facts": [
+            "Agent's current position: (1, 3)",
+            "Key position: (1, 10)",
+            "Locked door position: (4, 10)",
+            "Goal position: (5, 10)",
+            "Inventory is empty."
+          ]
+        },
+        "plan": {
+          "current_subgoal": "Pick up the key.",
+          "next_intent": "Move towards the key.",
+          "success_condition": "The key is picked up and added to the inventory."
+        },
+        "tool_call": {
+          "name": "move",
+          "args": {
+            "direction": "east"
+          }
+        }
+      },
+      "result": {
+        "success": false,
+        "message": "Cannot move east: blocked by a wall.",
+        "done": false,
+        "reward": 0.0,
+        "info": {
+          "observation": {
+            "position": [
+              1,
+              3
+            ],
+            "inventory": [],
+            "visible_map": [
+              "#############",
+              "#..A#......K#",
+              "#.#.#.#####.#",
+              "#.#.........#",
+              "#.#########D#",
+              "#..........G#",
+              "#############"
+            ],
+            "legend": {
+              "A": "agent",
+              "#": "wall",
+              ".": "empty space",
+              "K": "key",
+              "D": "locked door",
+              "G": "goal"
+            }
+          }
+        }
+      },
+      "validation": {
+        "approved": false,
+        "reason": "Cannot move east: blocked by a wall."
+      }
+    },
+    {
+      "step": 25,
+      "observation": {
+        "world_type": "grid_2d",
+        "goal": "Find the key, unlock the door, and reach the goal.",
+        "state": {
+          "position": [
+            1,
+            3
+          ],
+          "inventory": [],
+          "visible_map": [
+            "#############",
+            "#..A#......K#",
+            "#.#.#.#####.#",
+            "#.#.........#",
+            "#.#########D#",
+            "#..........G#",
+            "#############"
+          ],
+          "legend": {
+            "A": "agent",
+            "#": "wall",
+            ".": "empty space",
+            "K": "key",
+            "D": "locked door",
+            "G": "goal"
+          }
+        },
+        "valid_actions": [
+          "move_north",
+          "move_south",
+          "move_east",
+          "move_west",
+          "look",
+          "pick_up",
+          "unlock"
+        ],
+        "previous_feedback": "Cannot move east: blocked by a wall."
+      },
+      "decision": {
+        "perception": {
+          "summary": "The agent is currently at position (1, 3) and does not have any items in its inventory. The visible map shows the position of the key (K) to the east, a locked door (D) to the south, and the goal (G) further down. The agent cannot move east due to a wall.",
+          "task_relevant_facts": [
+            "The key (K) is located to the east of the agent's current position but is blocked by a wall.",
+            "The locked door (D) is located directly south of the agent's current position.",
+            "The goal (G) is located further down in the visible map."
+          ]
+        },
+        "plan": {
+          "current_subgoal": "Pick up the key (K).",
+          "next_intent": "Move south to unlock the door (D) once the key is obtained.",
+          "success_condition": "The agent successfully picks up the key."
+        },
+        "tool_call": {
+          "name": "move",
+          "args": {
+            "direction": "south"
+          }
+        }
+      },
+      "result": {
+        "success": true,
+        "message": "Moved to (2, 3).",
+        "done": false,
+        "reward": 0.0,
+        "info": {}
+      },
+      "validation": {
+        "approved": true,
+        "reason": "Tool call approved."
+      }
+    },
+    {
+      "step": 26,
+      "observation": {
+        "world_type": "grid_2d",
+        "goal": "Find the key, unlock the door, and reach the goal.",
+        "state": {
+          "position": [
+            2,
+            3
+          ],
+          "inventory": [],
+          "visible_map": [
+            "#############",
+            "#...#......K#",
+            "#.#A#.#####.#",
+            "#.#.........#",
+            "#.#########D#",
+            "#..........G#",
+            "#############"
+          ],
+          "legend": {
+            "A": "agent",
+            "#": "wall",
+            ".": "empty space",
+            "K": "key",
+            "D": "locked door",
+            "G": "goal"
+          }
+        },
+        "valid_actions": [
+          "move_north",
+          "move_south",
+          "move_east",
+          "move_west",
+          "look",
+          "pick_up",
+          "unlock"
+        ],
+        "previous_feedback": "Moved to (2, 3)."
+      },
+      "decision": {
+        "perception": {
+          "summary": "The agent is currently at position (2, 3) with no items in its inventory. The key (K) is located at (1, 8), the locked door (D) is at (4, 8), and the goal (G) is at (5, 8).",
+          "task_relevant_facts": [
+            "Agent position: (2, 3)",
+            "Key position: (1, 8)",
+            "Locked door position: (4, 8)",
+            "Goal position: (5, 8)"
+          ]
+        },
+        "plan": {
+          "current_subgoal": "Pick up the key.",
+          "next_intent": "Move to the key's position.",
+          "success_condition": "The agent has the key in its inventory."
+        },
+        "tool_call": {
+          "name": "move",
+          "args": {
+            "direction": "east"
+          }
+        }
+      },
+      "result": {
+        "success": false,
+        "message": "Cannot move east: blocked by a wall.",
+        "done": false,
+        "reward": 0.0,
+        "info": {
+          "observation": {
+            "position": [
+              2,
+              3
+            ],
+            "inventory": [],
+            "visible_map": [
+              "#############",
+              "#...#......K#",
+              "#.#A#.#####.#",
+              "#.#.........#",
+              "#.#########D#",
+              "#..........G#",
+              "#############"
+            ],
+            "legend": {
+              "A": "agent",
+              "#": "wall",
+              ".": "empty space",
+              "K": "key",
+              "D": "locked door",
+              "G": "goal"
+            }
+          }
+        }
+      },
+      "validation": {
+        "approved": false,
+        "reason": "Cannot move east: blocked by a wall."
+      }
+    },
+    {
+      "step": 27,
+      "observation": {
+        "world_type": "grid_2d",
+        "goal": "Find the key, unlock the door, and reach the goal.",
+        "state": {
+          "position": [
+            2,
+            3
+          ],
+          "inventory": [],
+          "visible_map": [
+            "#############",
+            "#...#......K#",
+            "#.#A#.#####.#",
+            "#.#.........#",
+            "#.#########D#",
+            "#..........G#",
+            "#############"
+          ],
+          "legend": {
+            "A": "agent",
+            "#": "wall",
+            ".": "empty space",
+            "K": "key",
+            "D": "locked door",
+            "G": "goal"
+          }
+        },
+        "valid_actions": [
+          "move_north",
+          "move_south",
+          "move_east",
+          "move_west",
+          "look",
+          "pick_up",
+          "unlock"
+        ],
+        "previous_feedback": "Cannot move east: blocked by a wall."
+      },
+      "decision": {
+        "perception": {
+          "summary": "The agent is currently positioned at (2, 3) and can see a key (K) to the east, a locked door (D) to the south, and the goal (G) further down. The agent currently has no items in its inventory. Movement to the east is blocked by a wall.",
+          "task_relevant_facts": [
+            "The key (K) is visible in the environment.",
+            "The door (D) is locked and needs to be unlocked.",
+            "The goal (G) is reachable after unlocking the door."
+          ]
+        },
+        "plan": {
+          "current_subgoal": "Pick up the key.",
+          "next_intent": "Pick up the key to unlock the door.",
+          "success_condition": "The agent has the key in its inventory."
+        },
+        "tool_call": {
+          "name": "pick_up",
+          "args": {
+            "item": "K"
+          }
+        }
+      },
+      "result": {
+        "success": false,
+        "message": "Unknown item: K",
+        "done": false,
+        "reward": 0.0,
+        "info": {
+          "observation": {
+            "position": [
+              2,
+              3
+            ],
+            "inventory": [],
+            "visible_map": [
+              "#############",
+              "#...#......K#",
+              "#.#A#.#####.#",
+              "#.#.........#",
+              "#.#########D#",
+              "#..........G#",
+              "#############"
+            ],
+            "legend": {
+              "A": "agent",
+              "#": "wall",
+              ".": "empty space",
+              "K": "key",
+              "D": "locked door",
+              "G": "goal"
+            }
+          }
+        }
+      },
+      "validation": {
+        "approved": false,
+        "reason": "Unknown item: K"
+      }
+    },
+    {
+      "step": 28,
+      "observation": {
+        "world_type": "grid_2d",
+        "goal": "Find the key, unlock the door, and reach the goal.",
+        "state": {
+          "position": [
+            2,
+            3
+          ],
+          "inventory": [],
+          "visible_map": [
+            "#############",
+            "#...#......K#",
+            "#.#A#.#####.#",
+            "#.#.........#",
+            "#.#########D#",
+            "#..........G#",
+            "#############"
+          ],
+          "legend": {
+            "A": "agent",
+            "#": "wall",
+            ".": "empty space",
+            "K": "key",
+            "D": "locked door",
+            "G": "goal"
+          }
+        },
+        "valid_actions": [
+          "move_north",
+          "move_south",
+          "move_east",
+          "move_west",
+          "look",
+          "pick_up",
+          "unlock"
+        ],
+        "previous_feedback": "Unknown item: K"
+      },
+      "decision": {
+        "perception": {
+          "summary": "The agent is currently at position (2, 3) on the grid and has no items in its inventory. The visible map shows the key (K) nearby at (1, 3) and a locked door (D) at (4, 3). The goal (G) is located at (5, 8).",
+          "task_relevant_facts": [
+            "The key (K) is located at (1, 3).",
+            "The locked door (D) is at (4, 3).",
+            "The goal (G) is at (5, 8)."
+          ]
+        },
+        "plan": {
+          "current_subgoal": "Pick up the key (K).",
+          "next_intent": "Move to the position of the key.",
+          "success_condition": "The agent picks up the key."
+        },
+        "tool_call": {
+          "name": "move",
+          "args": {
+            "direction": "north"
+          }
+        }
+      },
+      "result": {
+        "success": true,
+        "message": "Moved to (1, 3).",
+        "done": false,
+        "reward": 0.0,
+        "info": {}
+      },
+      "validation": {
+        "approved": true,
+        "reason": "Tool call approved."
+      }
+    },
+    {
+      "step": 29,
+      "observation": {
+        "world_type": "grid_2d",
+        "goal": "Find the key, unlock the door, and reach the goal.",
+        "state": {
+          "position": [
+            1,
+            3
+          ],
+          "inventory": [],
+          "visible_map": [
+            "#############",
+            "#..A#......K#",
+            "#.#.#.#####.#",
+            "#.#.........#",
+            "#.#########D#",
+            "#..........G#",
+            "#############"
+          ],
+          "legend": {
+            "A": "agent",
+            "#": "wall",
+            ".": "empty space",
+            "K": "key",
+            "D": "locked door",
+            "G": "goal"
+          }
+        },
+        "valid_actions": [
+          "move_north",
+          "move_south",
+          "move_east",
+          "move_west",
+          "look",
+          "pick_up",
+          "unlock"
+        ],
+        "previous_feedback": "Moved to (1, 3)."
+      },
+      "decision": {
+        "perception": {
+          "summary": "The agent is currently at position (1, 3) and can see the key (K) to the east, a locked door (D) further down, and the goal (G) beyond the door.",
+          "task_relevant_facts": [
+            "Agent's current position: (1, 3)",
+            "Key is located at (1, 8)",
+            "Locked door is at (5, 8)",
+            "Goal is located at (5, 10)"
+          ]
+        },
+        "plan": {
+          "current_subgoal": "Pick up the key.",
+          "next_intent": "Move to the key's location and pick it up.",
+          "success_condition": "The agent successfully picks up the key."
+        },
+        "tool_call": {
+          "name": "move",
+          "args": {
+            "direction": "east"
+          }
+        }
+      },
+      "result": {
+        "success": false,
+        "message": "Cannot move east: blocked by a wall.",
+        "done": false,
+        "reward": 0.0,
+        "info": {
+          "observation": {
+            "position": [
+              1,
+              3
+            ],
+            "inventory": [],
+            "visible_map": [
+              "#############",
+              "#..A#......K#",
+              "#.#.#.#####.#",
+              "#.#.........#",
+              "#.#########D#",
+              "#..........G#",
+              "#############"
+            ],
+            "legend": {
+              "A": "agent",
+              "#": "wall",
+              ".": "empty space",
+              "K": "key",
+              "D": "locked door",
+              "G": "goal"
+            }
+          }
+        }
+      },
+      "validation": {
+        "approved": false,
+        "reason": "Cannot move east: blocked by a wall."
+      }
+    },
+    {
+      "step": 30,
+      "observation": {
+        "world_type": "grid_2d",
+        "goal": "Find the key, unlock the door, and reach the goal.",
+        "state": {
+          "position": [
+            1,
+            3
+          ],
+          "inventory": [],
+          "visible_map": [
+            "#############",
+            "#..A#......K#",
+            "#.#.#.#####.#",
+            "#.#.........#",
+            "#.#########D#",
+            "#..........G#",
+            "#############"
+          ],
+          "legend": {
+            "A": "agent",
+            "#": "wall",
+            ".": "empty space",
+            "K": "key",
+            "D": "locked door",
+            "G": "goal"
+          }
+        },
+        "valid_actions": [
+          "move_north",
+          "move_south",
+          "move_east",
+          "move_west",
+          "look",
+          "pick_up",
+          "unlock"
+        ],
+        "previous_feedback": "Cannot move east: blocked by a wall."
+      },
+      "decision": {
+        "perception": {
+          "summary": "The agent is currently at position (1, 3) in a grid and can see a key (K) to the east at (1, 9) and a locked door (D) at (5, 9). The goal (G) is located at (5, 7). The agent's inventory is empty, and the east direction is blocked by a wall.",
+          "task_relevant_facts": [
+            "The key (K) is at (1, 9).",
+            "The door (D) is at (5, 9).",
+            "The goal (G) is at (5, 7).",
+            "The agent's current position is (1, 3).",
+            "The east direction is blocked by a wall."
+          ]
+        },
+        "plan": {
+          "current_subgoal": "Pick up the key.",
+          "next_intent": "Move toward the key.",
+          "success_condition": "The agent successfully picks up the key."
+        },
+        "tool_call": {
+          "name": "move",
+          "args": {
+            "direction": "east"
+          }
+        }
+      },
+      "result": {
+        "success": false,
+        "message": "Cannot move east: blocked by a wall.",
+        "done": false,
+        "reward": 0.0,
+        "info": {
+          "observation": {
+            "position": [
+              1,
+              3
+            ],
+            "inventory": [],
+            "visible_map": [
+              "#############",
+              "#..A#......K#",
+              "#.#.#.#####.#",
+              "#.#.........#",
+              "#.#########D#",
+              "#..........G#",
+              "#############"
+            ],
+            "legend": {
+              "A": "agent",
+              "#": "wall",
+              ".": "empty space",
+              "K": "key",
+              "D": "locked door",
+              "G": "goal"
+            }
+          }
+        }
+      },
+      "validation": {
+        "approved": false,
+        "reason": "Cannot move east: blocked by a wall."
+      }
+    },
+    {
+      "step": 31,
+      "observation": {
+        "world_type": "grid_2d",
+        "goal": "Find the key, unlock the door, and reach the goal.",
+        "state": {
+          "position": [
+            1,
+            3
+          ],
+          "inventory": [],
+          "visible_map": [
+            "#############",
+            "#..A#......K#",
+            "#.#.#.#####.#",
+            "#.#.........#",
+            "#.#########D#",
+            "#..........G#",
+            "#############"
+          ],
+          "legend": {
+            "A": "agent",
+            "#": "wall",
+            ".": "empty space",
+            "K": "key",
+            "D": "locked door",
+            "G": "goal"
+          }
+        },
+        "valid_actions": [
+          "move_north",
+          "move_south",
+          "move_east",
+          "move_west",
+          "look",
+          "pick_up",
+          "unlock"
+        ],
+        "previous_feedback": "Cannot move east: blocked by a wall."
+      },
+      "decision": {
+        "perception": {
+          "summary": "The agent is at position (1, 3) and can see a key (K) to the east at (1, 10) and a locked door (D) to the south at (4, 10). The goal (G) is located at (5, 10). The agent cannot move east due to a wall.",
+          "task_relevant_facts": [
+            "Agent's position: (1, 3)",
+            "Key position: (1, 10)",
+            "Locked door position: (4, 10)",
+            "Goal position: (5, 10)",
+            "Wall blocks movement to the east."
+          ]
+        },
+        "plan": {
+          "current_subgoal": "Pick up the key.",
+          "next_intent": "Move to the key's location.",
+          "success_condition": "Key is added to the inventory."
+        },
+        "tool_call": {
+          "name": "move",
+          "args": {
+            "direction": "east"
+          }
+        }
+      },
+      "result": {
+        "success": false,
+        "message": "Cannot move east: blocked by a wall.",
+        "done": false,
+        "reward": 0.0,
+        "info": {
+          "observation": {
+            "position": [
+              1,
+              3
+            ],
+            "inventory": [],
+            "visible_map": [
+              "#############",
+              "#..A#......K#",
+              "#.#.#.#####.#",
+              "#.#.........#",
+              "#.#########D#",
+              "#..........G#",
+              "#############"
+            ],
+            "legend": {
+              "A": "agent",
+              "#": "wall",
+              ".": "empty space",
+              "K": "key",
+              "D": "locked door",
+              "G": "goal"
+            }
+          }
+        }
+      },
+      "validation": {
+        "approved": false,
+        "reason": "Cannot move east: blocked by a wall."
+      }
+    },
+    {
+      "step": 32,
+      "observation": {
+        "world_type": "grid_2d",
+        "goal": "Find the key, unlock the door, and reach the goal.",
+        "state": {
+          "position": [
+            1,
+            3
+          ],
+          "inventory": [],
+          "visible_map": [
+            "#############",
+            "#..A#......K#",
+            "#.#.#.#####.#",
+            "#.#.........#",
+            "#.#########D#",
+            "#..........G#",
+            "#############"
+          ],
+          "legend": {
+            "A": "agent",
+            "#": "wall",
+            ".": "empty space",
+            "K": "key",
+            "D": "locked door",
+            "G": "goal"
+          }
+        },
+        "valid_actions": [
+          "move_north",
+          "move_south",
+          "move_east",
+          "move_west",
+          "look",
+          "pick_up",
+          "unlock"
+        ],
+        "previous_feedback": "Cannot move east: blocked by a wall."
+      },
+      "decision": {
+        "perception": {
+          "summary": "The agent is currently at position (1, 3) and needs to find the key (K) located at (1, 9), unlock the door (D) at (5, 9), and reach the goal (G) at (5, 8). The current inventory is empty, and the agent cannot move east due to a wall.",
+          "task_relevant_facts": [
+            "The key (K) is located at (1, 9).",
+            "The locked door (D) is located at (5, 9).",
+            "The goal (G) is located at (5, 8).",
+            "The agent is currently at (1, 3) and has no items."
+          ]
+        },
+        "plan": {
+          "current_subgoal": "Pick up the key.",
+          "next_intent": "Move east to reach the key.",
+          "success_condition": "The agent successfully picks up the key."
+        },
+        "tool_call": {
+          "name": "move",
+          "args": {
+            "direction": "east"
+          }
+        }
+      },
+      "result": {
+        "success": false,
+        "message": "Cannot move east: blocked by a wall.",
+        "done": false,
+        "reward": 0.0,
+        "info": {
+          "observation": {
+            "position": [
+              1,
+              3
+            ],
+            "inventory": [],
+            "visible_map": [
+              "#############",
+              "#..A#......K#",
+              "#.#.#.#####.#",
+              "#.#.........#",
+              "#.#########D#",
+              "#..........G#",
+              "#############"
+            ],
+            "legend": {
+              "A": "agent",
+              "#": "wall",
+              ".": "empty space",
+              "K": "key",
+              "D": "locked door",
+              "G": "goal"
+            }
+          }
+        }
+      },
+      "validation": {
+        "approved": false,
+        "reason": "Cannot move east: blocked by a wall."
+      }
+    },
+    {
+      "step": 33,
+      "observation": {
+        "world_type": "grid_2d",
+        "goal": "Find the key, unlock the door, and reach the goal.",
+        "state": {
+          "position": [
+            1,
+            3
+          ],
+          "inventory": [],
+          "visible_map": [
+            "#############",
+            "#..A#......K#",
+            "#.#.#.#####.#",
+            "#.#.........#",
+            "#.#########D#",
+            "#..........G#",
+            "#############"
+          ],
+          "legend": {
+            "A": "agent",
+            "#": "wall",
+            ".": "empty space",
+            "K": "key",
+            "D": "locked door",
+            "G": "goal"
+          }
+        },
+        "valid_actions": [
+          "move_north",
+          "move_south",
+          "move_east",
+          "move_west",
+          "look",
+          "pick_up",
+          "unlock"
+        ],
+        "previous_feedback": "Cannot move east: blocked by a wall."
+      },
+      "decision": {
+        "perception": {
+          "summary": "The agent is currently at position (1, 3) and can see the key (K) to the east and the locked door (D) below it. The goal (G) is also visible further down. The agent needs to find the key, unlock the door, and reach the goal.",
+          "task_relevant_facts": [
+            "The key (K) is located to the east at (1, 7).",
+            "The locked door (D) is located at (5, 7).",
+            "The goal (G) is located at (6, 7).",
+            "The agent is currently at (1, 3)."
+          ]
+        },
+        "plan": {
+          "current_subgoal": "Pick up the key.",
+          "next_intent": "Move east to the key.",
+          "success_condition": "The agent picks up the key."
+        },
+        "tool_call": {
+          "name": "move",
+          "args": {
+            "direction": "east"
+          }
+        }
+      },
+      "result": {
+        "success": false,
+        "message": "Cannot move east: blocked by a wall.",
+        "done": false,
+        "reward": 0.0,
+        "info": {
+          "observation": {
+            "position": [
+              1,
+              3
+            ],
+            "inventory": [],
+            "visible_map": [
+              "#############",
+              "#..A#......K#",
+              "#.#.#.#####.#",
+              "#.#.........#",
+              "#.#########D#",
+              "#..........G#",
+              "#############"
+            ],
+            "legend": {
+              "A": "agent",
+              "#": "wall",
+              ".": "empty space",
+              "K": "key",
+              "D": "locked door",
+              "G": "goal"
+            }
+          }
+        }
+      },
+      "validation": {
+        "approved": false,
+        "reason": "Cannot move east: blocked by a wall."
+      }
+    },
+    {
+      "step": 34,
+      "observation": {
+        "world_type": "grid_2d",
+        "goal": "Find the key, unlock the door, and reach the goal.",
+        "state": {
+          "position": [
+            1,
+            3
+          ],
+          "inventory": [],
+          "visible_map": [
+            "#############",
+            "#..A#......K#",
+            "#.#.#.#####.#",
+            "#.#.........#",
+            "#.#########D#",
+            "#..........G#",
+            "#############"
+          ],
+          "legend": {
+            "A": "agent",
+            "#": "wall",
+            ".": "empty space",
+            "K": "key",
+            "D": "locked door",
+            "G": "goal"
+          }
+        },
+        "valid_actions": [
+          "move_north",
+          "move_south",
+          "move_east",
+          "move_west",
+          "look",
+          "pick_up",
+          "unlock"
+        ],
+        "previous_feedback": "Cannot move east: blocked by a wall."
+      },
+      "decision": {
+        "perception": {
+          "summary": "The agent is currently at position (1, 3) and can see the key (K) to the east at position (1, 9) and the locked door (D) at (5, 9). The goal (G) is at (5, 8). The agent does not have the key in its inventory.",
+          "task_relevant_facts": [
+            "Agent's position: (1, 3)",
+            "Key is located at (1, 9)",
+            "Locked door is located at (5, 9)",
+            "Goal is located at (5, 8)",
+            "Agent's inventory is empty"
+          ]
+        },
+        "plan": {
+          "current_subgoal": "Pick up the key",
+          "next_intent": "Move east to the key's location and pick it up.",
+          "success_condition": "The key is added to the agent's inventory."
+        },
+        "tool_call": {
+          "name": "move",
+          "args": {
+            "direction": "east"
+          }
+        }
+      },
+      "result": {
+        "success": false,
+        "message": "Cannot move east: blocked by a wall.",
+        "done": false,
+        "reward": 0.0,
+        "info": {
+          "observation": {
+            "position": [
+              1,
+              3
+            ],
+            "inventory": [],
+            "visible_map": [
+              "#############",
+              "#..A#......K#",
+              "#.#.#.#####.#",
+              "#.#.........#",
+              "#.#########D#",
+              "#..........G#",
+              "#############"
+            ],
+            "legend": {
+              "A": "agent",
+              "#": "wall",
+              ".": "empty space",
+              "K": "key",
+              "D": "locked door",
+              "G": "goal"
+            }
+          }
+        }
+      },
+      "validation": {
+        "approved": false,
+        "reason": "Cannot move east: blocked by a wall."
+      }
+    },
+    {
+      "step": 35,
+      "observation": {
+        "world_type": "grid_2d",
+        "goal": "Find the key, unlock the door, and reach the goal.",
+        "state": {
+          "position": [
+            1,
+            3
+          ],
+          "inventory": [],
+          "visible_map": [
+            "#############",
+            "#..A#......K#",
+            "#.#.#.#####.#",
+            "#.#.........#",
+            "#.#########D#",
+            "#..........G#",
+            "#############"
+          ],
+          "legend": {
+            "A": "agent",
+            "#": "wall",
+            ".": "empty space",
+            "K": "key",
+            "D": "locked door",
+            "G": "goal"
+          }
+        },
+        "valid_actions": [
+          "move_north",
+          "move_south",
+          "move_east",
+          "move_west",
+          "look",
+          "pick_up",
+          "unlock"
+        ],
+        "previous_feedback": "Cannot move east: blocked by a wall."
+      },
+      "decision": {
+        "perception": {
+          "summary": "The agent is currently at position (1, 3) and needs to find the key (K) located at (1, 10), unlock the door (D) at (5, 10), and then reach the goal (G) at (5, 11). The agent's inventory is empty, and the way east is blocked by a wall.",
+          "task_relevant_facts": [
+            "The key is located at (1, 10).",
+            "The locked door is at (5, 10).",
+            "The goal is at (5, 11)."
+          ]
+        },
+        "plan": {
+          "current_subgoal": "Find the key.",
+          "next_intent": "Move towards the key.",
+          "success_condition": "The agent reaches the key at (1, 10)."
+        },
+        "tool_call": {
+          "name": "move",
+          "args": {
+            "direction": "east"
+          }
+        }
+      },
+      "result": {
+        "success": false,
+        "message": "Cannot move east: blocked by a wall.",
+        "done": false,
+        "reward": 0.0,
+        "info": {
+          "observation": {
+            "position": [
+              1,
+              3
+            ],
+            "inventory": [],
+            "visible_map": [
+              "#############",
+              "#..A#......K#",
+              "#.#.#.#####.#",
+              "#.#.........#",
+              "#.#########D#",
+              "#..........G#",
+              "#############"
+            ],
+            "legend": {
+              "A": "agent",
+              "#": "wall",
+              ".": "empty space",
+              "K": "key",
+              "D": "locked door",
+              "G": "goal"
+            }
+          }
+        }
+      },
+      "validation": {
+        "approved": false,
+        "reason": "Cannot move east: blocked by a wall."
+      }
+    },
+    {
+      "step": 36,
+      "observation": {
+        "world_type": "grid_2d",
+        "goal": "Find the key, unlock the door, and reach the goal.",
+        "state": {
+          "position": [
+            1,
+            3
+          ],
+          "inventory": [],
+          "visible_map": [
+            "#############",
+            "#..A#......K#",
+            "#.#.#.#####.#",
+            "#.#.........#",
+            "#.#########D#",
+            "#..........G#",
+            "#############"
+          ],
+          "legend": {
+            "A": "agent",
+            "#": "wall",
+            ".": "empty space",
+            "K": "key",
+            "D": "locked door",
+            "G": "goal"
+          }
+        },
+        "valid_actions": [
+          "move_north",
+          "move_south",
+          "move_east",
+          "move_west",
+          "look",
+          "pick_up",
+          "unlock"
+        ],
+        "previous_feedback": "Cannot move east: blocked by a wall."
+      },
+      "decision": {
+        "perception": {
+          "summary": "The agent is currently at position (1, 3) in a 2D grid. The goal is to find a key (K), unlock a door (D), and reach the goal (G). The visible map shows the key to the east, a locked door downwards, and the goal further down. The agent cannot move east due to a wall.",
+          "task_relevant_facts": [
+            "Agent position: (1, 3)",
+            "Key (K) is at (1, 10)",
+            "Locked door (D) is at (5, 10)",
+            "Goal (G) is at (6, 10)",
+            "Current inventory is empty"
+          ]
+        },
+        "plan": {
+          "current_subgoal": "Find and pick up the key.",
+          "next_intent": "Move south to get closer to the key.",
+          "success_condition": "The agent picks up the key."
+        },
+        "tool_call": {
+          "name": "move",
+          "args": {
+            "direction": "south"
+          }
+        }
+      },
+      "result": {
+        "success": true,
+        "message": "Moved to (2, 3).",
+        "done": false,
+        "reward": 0.0,
+        "info": {}
+      },
+      "validation": {
+        "approved": true,
+        "reason": "Tool call approved."
+      }
+    },
+    {
+      "step": 37,
+      "observation": {
+        "world_type": "grid_2d",
+        "goal": "Find the key, unlock the door, and reach the goal.",
+        "state": {
+          "position": [
+            2,
+            3
+          ],
+          "inventory": [],
+          "visible_map": [
+            "#############",
+            "#...#......K#",
+            "#.#A#.#####.#",
+            "#.#.........#",
+            "#.#########D#",
+            "#..........G#",
+            "#############"
+          ],
+          "legend": {
+            "A": "agent",
+            "#": "wall",
+            ".": "empty space",
+            "K": "key",
+            "D": "locked door",
+            "G": "goal"
+          }
+        },
+        "valid_actions": [
+          "move_north",
+          "move_south",
+          "move_east",
+          "move_west",
+          "look",
+          "pick_up",
+          "unlock"
+        ],
+        "previous_feedback": "Moved to (2, 3)."
+      },
+      "decision": {
+        "perception": {
+          "summary": "The agent is located at (2, 3) on a grid map and needs to find the key, unlock the door, and reach the goal. The key (K) is visible at (1, 3), the door (D) is at (4, 3), and the goal (G) is at (5, 3).",
+          "task_relevant_facts": [
+            "Agent position: (2, 3)",
+            "Key location: (1, 3)",
+            "Door location: (4, 3)",
+            "Goal location: (5, 3)"
+          ]
+        },
+        "plan": {
+          "current_subgoal": "Find and pick up the key.",
+          "next_intent": "Move to the key's position.",
+          "success_condition": "The agent has picked up the key."
+        },
+        "tool_call": {
+          "name": "move",
+          "args": {
+            "direction": "north"
+          }
+        }
+      },
+      "result": {
+        "success": true,
+        "message": "Moved to (1, 3).",
+        "done": false,
+        "reward": 0.0,
+        "info": {}
+      },
+      "validation": {
+        "approved": true,
+        "reason": "Tool call approved."
+      }
+    },
+    {
+      "step": 38,
+      "observation": {
+        "world_type": "grid_2d",
+        "goal": "Find the key, unlock the door, and reach the goal.",
+        "state": {
+          "position": [
+            1,
+            3
+          ],
+          "inventory": [],
+          "visible_map": [
+            "#############",
+            "#..A#......K#",
+            "#.#.#.#####.#",
+            "#.#.........#",
+            "#.#########D#",
+            "#..........G#",
+            "#############"
+          ],
+          "legend": {
+            "A": "agent",
+            "#": "wall",
+            ".": "empty space",
+            "K": "key",
+            "D": "locked door",
+            "G": "goal"
+          }
+        },
+        "valid_actions": [
+          "move_north",
+          "move_south",
+          "move_east",
+          "move_west",
+          "look",
+          "pick_up",
+          "unlock"
+        ],
+        "previous_feedback": "Moved to (1, 3)."
+      },
+      "decision": {
+        "perception": {
+          "summary": "The agent is currently at position (1, 3) and needs to find the key (K), unlock the door (D), and reach the goal (G). The key is located at (1, 10) and the door is at (4, 10).",
+          "task_relevant_facts": [
+            "Agent position: (1, 3)",
+            "Key position: (1, 10)",
+            "Door position: (4, 10)",
+            "Goal position: (5, 10)"
+          ]
+        },
+        "plan": {
+          "current_subgoal": "Move towards the key.",
+          "next_intent": "Move east to collect the key.",
+          "success_condition": "The key is picked up."
+        },
+        "tool_call": {
+          "name": "move",
+          "args": {
+            "direction": "east"
+          }
+        }
+      },
+      "result": {
+        "success": false,
+        "message": "Cannot move east: blocked by a wall.",
+        "done": false,
+        "reward": 0.0,
+        "info": {
+          "observation": {
+            "position": [
+              1,
+              3
+            ],
+            "inventory": [],
+            "visible_map": [
+              "#############",
+              "#..A#......K#",
+              "#.#.#.#####.#",
+              "#.#.........#",
+              "#.#########D#",
+              "#..........G#",
+              "#############"
+            ],
+            "legend": {
+              "A": "agent",
+              "#": "wall",
+              ".": "empty space",
+              "K": "key",
+              "D": "locked door",
+              "G": "goal"
+            }
+          }
+        }
+      },
+      "validation": {
+        "approved": false,
+        "reason": "Cannot move east: blocked by a wall."
+      }
+    },
+    {
+      "step": 39,
+      "observation": {
+        "world_type": "grid_2d",
+        "goal": "Find the key, unlock the door, and reach the goal.",
+        "state": {
+          "position": [
+            1,
+            3
+          ],
+          "inventory": [],
+          "visible_map": [
+            "#############",
+            "#..A#......K#",
+            "#.#.#.#####.#",
+            "#.#.........#",
+            "#.#########D#",
+            "#..........G#",
+            "#############"
+          ],
+          "legend": {
+            "A": "agent",
+            "#": "wall",
+            ".": "empty space",
+            "K": "key",
+            "D": "locked door",
+            "G": "goal"
+          }
+        },
+        "valid_actions": [
+          "move_north",
+          "move_south",
+          "move_east",
+          "move_west",
+          "look",
+          "pick_up",
+          "unlock"
+        ],
+        "previous_feedback": "Cannot move east: blocked by a wall."
+      },
+      "decision": {
+        "perception": {
+          "summary": "The agent is currently at position (1, 3) and needs to find the key (K) located at (1, 11) to unlock the door (D) at (5, 11) and then reach the goal (G) at (5, 10). The agent cannot move east due to a wall.",
+          "task_relevant_facts": [
+            "The key is located at (1, 11).",
+            "The door is locked at (5, 11).",
+            "The goal is at (5, 10).",
+            "The agent's current position is (1, 3).",
+            "The agent has no items in inventory."
+          ]
+        },
+        "plan": {
+          "current_subgoal": "Find the key.",
+          "next_intent": "Move east to reach the location of the key.",
+          "success_condition": "The agent has picked up the key."
+        },
+        "tool_call": {
+          "name": "move",
+          "args": {
+            "direction": "east"
+          }
+        }
+      },
+      "result": {
+        "success": false,
+        "message": "Cannot move east: blocked by a wall.",
+        "done": false,
+        "reward": 0.0,
+        "info": {
+          "observation": {
+            "position": [
+              1,
+              3
+            ],
+            "inventory": [],
+            "visible_map": [
+              "#############",
+              "#..A#......K#",
+              "#.#.#.#####.#",
+              "#.#.........#",
+              "#.#########D#",
+              "#..........G#",
+              "#############"
+            ],
+            "legend": {
+              "A": "agent",
+              "#": "wall",
+              ".": "empty space",
+              "K": "key",
+              "D": "locked door",
+              "G": "goal"
+            }
+          }
+        }
+      },
+      "validation": {
+        "approved": false,
+        "reason": "Cannot move east: blocked by a wall."
+      }
+    },
+    {
+      "step": 40,
+      "observation": {
+        "world_type": "grid_2d",
+        "goal": "Find the key, unlock the door, and reach the goal.",
+        "state": {
+          "position": [
+            1,
+            3
+          ],
+          "inventory": [],
+          "visible_map": [
+            "#############",
+            "#..A#......K#",
+            "#.#.#.#####.#",
+            "#.#.........#",
+            "#.#########D#",
+            "#..........G#",
+            "#############"
+          ],
+          "legend": {
+            "A": "agent",
+            "#": "wall",
+            ".": "empty space",
+            "K": "key",
+            "D": "locked door",
+            "G": "goal"
+          }
+        },
+        "valid_actions": [
+          "move_north",
+          "move_south",
+          "move_east",
+          "move_west",
+          "look",
+          "pick_up",
+          "unlock"
+        ],
+        "previous_feedback": "Cannot move east: blocked by a wall."
+      },
+      "decision": {
+        "perception": {
+          "summary": "The agent is at position (1, 3) and needs to find the key at (1, 8), unlock the door at (4, 8), and reach the goal at (5, 8). The agent cannot move east due to a wall.",
+          "task_relevant_facts": [
+            "Agent's current position: (1, 3)",
+            "Key is located at (1, 8)",
+            "Locked door is at (4, 8)",
+            "Goal is at (5, 8)",
+            "Agent's inventory is empty"
+          ]
+        },
+        "plan": {
+          "current_subgoal": "Pick up the key at (1, 8)",
+          "next_intent": "Move east to collect the key.",
+          "success_condition": "The agent has the key in their inventory."
+        },
+        "tool_call": {
+          "name": "move",
+          "args": {
+            "direction": "east"
+          }
+        }
+      },
+      "result": {
+        "success": false,
+        "message": "Cannot move east: blocked by a wall.",
+        "done": false,
+        "reward": 0.0,
+        "info": {
+          "observation": {
+            "position": [
+              1,
+              3
+            ],
+            "inventory": [],
+            "visible_map": [
+              "#############",
+              "#..A#......K#",
+              "#.#.#.#####.#",
+              "#.#.........#",
+              "#.#########D#",
+              "#..........G#",
+              "#############"
+            ],
+            "legend": {
+              "A": "agent",
+              "#": "wall",
+              ".": "empty space",
+              "K": "key",
+              "D": "locked door",
+              "G": "goal"
+            }
+          }
+        }
+      },
+      "validation": {
+        "approved": false,
+        "reason": "Cannot move east: blocked by a wall."
+      }
+    }
+  ]
+}
