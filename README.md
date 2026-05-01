@@ -8,7 +8,7 @@ The main focus of this project is the harness, not the complexity of the world.
 
 The harness is the product.
 
-The LLM is not allowed to directly modify the environment. It can only act through validated tools. At each step, the agent receives a structured observation, the task goal, and available tool schemas. It then produces a JSON tool call. The harness validates and executes the tool, then feeds the resulting observation back into the next step.
+The LLM is not allowed to directly modify the environment. It can only act through validated tools. At each step, the agent receives a structured observation, the task goal, and available tool schemas. It then produces a Pydantic-validated structured decision containing exactly one tool call. The harness validates and executes the tool, then feeds the resulting observation back into the next step.
 
 This mirrors the structure of embodied systems: perception, planning, action, feedback, and state update.
 
@@ -80,6 +80,8 @@ Agents choose tools instead of raw action strings:
 }
 ```
 
+Planner outputs are parsed with Pydantic, so malformed responses fail before they reach the executor.
+
 Available MVP tools:
 
 - `look()`
@@ -105,6 +107,8 @@ Available MVP tools:
 
 Legend: `A` agent, `#` wall, `.` empty space, `K` key, `D` locked door, `G` goal.
 
+Each observation also includes `available_moves`, the currently executable movement directions from the agent's position. The planner is instructed to choose `move(direction)` only from that list.
+
 One successful strategy is to route around the wall to the key, pick it up, return to the lower-right corridor, unlock the door, and move into the goal.
 
 ## Project Structure
@@ -123,6 +127,8 @@ examples/    example run artifacts
 ## Design Choices
 
 - The agent sees structured observations, not hidden environment state.
+- Observations include `available_moves` so the LLM does not need to infer immediate legal moves from ASCII alone.
+- Planner outputs are parsed through Pydantic structured output before validation/execution.
 - The harness validates tool name, schema, and environment constraints before execution.
 - The executor is the only component allowed to call environment APIs.
 - The logger records observation, decision, validation, and result for each step.

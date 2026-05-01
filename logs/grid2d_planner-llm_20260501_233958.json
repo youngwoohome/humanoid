@@ -1,0 +1,165 @@
+{
+  "env_name": "grid2d",
+  "agent_name": "planner-llm",
+  "success": false,
+  "num_steps": 2,
+  "steps": [
+    {
+      "step": 1,
+      "observation": {
+        "world_type": "grid_2d",
+        "goal": "Find the key, unlock the door, and reach the goal.",
+        "state": {
+          "position": [
+            1,
+            1
+          ],
+          "inventory": [],
+          "visible_map": [
+            "#############",
+            "#A..#......K#",
+            "#.#.#.#####.#",
+            "#.#.........#",
+            "#.#########D#",
+            "#..........G#",
+            "#############"
+          ],
+          "available_moves": [
+            "south",
+            "east"
+          ],
+          "legend": {
+            "A": "agent",
+            "#": "wall",
+            ".": "empty space",
+            "K": "key",
+            "D": "locked door",
+            "G": "goal"
+          }
+        },
+        "valid_actions": [
+          "move_north",
+          "move_south",
+          "move_east",
+          "move_west",
+          "look",
+          "pick_up",
+          "unlock"
+        ],
+        "previous_feedback": null
+      },
+      "decision": {
+        "perception": {
+          "summary": "The agent is at position (1, 1) and can move south or east. The key is located at (1, 9) and the door is at (4, 9). The goal is at (5, 9).",
+          "task_relevant_facts": [
+            "Agent's current position is (1, 1).",
+            "Available moves are south and east.",
+            "Key is located at (1, 9).",
+            "Door is located at (4, 9).",
+            "Goal is located at (5, 9)."
+          ]
+        },
+        "plan": {
+          "current_subgoal": "Move to the key at (1, 9).",
+          "next_intent": "Pick up the key.",
+          "success_condition": "The agent has the key in its inventory."
+        },
+        "tool_call": {
+          "name": "move",
+          "args": {
+            "direction": "east"
+          }
+        }
+      },
+      "result": {
+        "success": true,
+        "message": "Moved to (1, 2).",
+        "done": false,
+        "reward": 0.0,
+        "info": {}
+      },
+      "validation": {
+        "approved": true,
+        "reason": "Tool call approved."
+      }
+    },
+    {
+      "step": 2,
+      "observation": {
+        "world_type": "grid_2d",
+        "goal": "Find the key, unlock the door, and reach the goal.",
+        "state": {
+          "position": [
+            1,
+            2
+          ],
+          "inventory": [],
+          "visible_map": [
+            "#############",
+            "#.A.#......K#",
+            "#.#.#.#####.#",
+            "#.#.........#",
+            "#.#########D#",
+            "#..........G#",
+            "#############"
+          ],
+          "available_moves": [
+            "east",
+            "west"
+          ],
+          "legend": {
+            "A": "agent",
+            "#": "wall",
+            ".": "empty space",
+            "K": "key",
+            "D": "locked door",
+            "G": "goal"
+          }
+        },
+        "valid_actions": [
+          "move_north",
+          "move_south",
+          "move_east",
+          "move_west",
+          "look",
+          "pick_up",
+          "unlock"
+        ],
+        "previous_feedback": "Moved to (1, 2)."
+      },
+      "decision": {
+        "perception": {
+          "summary": "The agent is currently at position (1, 2) and can move east or west. The key is located at (1, 8) and the door is at (5, 8). The goal is at (5, 10).",
+          "task_relevant_facts": [
+            "The key is located at (1, 8).",
+            "The door is located at (5, 8).",
+            "The goal is located at (5, 10).",
+            "The agent can move east or west."
+          ]
+        },
+        "plan": {
+          "current_subgoal": "Pick up the key.",
+          "next_intent": "Move east to pick up the key.",
+          "success_condition": "The key is in the agent's inventory."
+        },
+        "tool_call": {
+          "name": "move",
+          "args": {
+            "direction": "east"
+          }
+        }
+      },
+      "result": {
+        "success": true,
+        "message": "Moved to (1, 3).",
+        "done": false,
+        "reward": 0.0,
+        "info": {}
+      },
+      "validation": {
+        "approved": true,
+        "reason": "Tool call approved."
+      }
+    }
+  ]
+}

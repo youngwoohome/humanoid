@@ -1,9 +1,9 @@
 from typing import Any, Dict
-import json
 
 from agents.base import BasePlanner
 from agents.llm_client import LLMClient
 from agents.prompts import build_planner_messages
+from agents.schemas import PlannerDecision
 
 
 class PlannerAgent(BasePlanner):
@@ -14,22 +14,25 @@ class PlannerAgent(BasePlanner):
 
     def decide(self, observation, tool_specs, goal) -> Dict[str, Any]:
         messages = build_planner_messages(observation, tool_specs, goal)
-        response = self.llm.complete_json(messages)
-        return json.loads(response)
+        decision = self.llm.run_llm(messages, PlannerDecision)
+        payload = decision.model_dump(exclude_none=True)
+        payload["tool_call"]["args"] = self._tool_args(
+            payload["tool_call"]["name"],
+            payload["tool_call"].get("args", {}),
+        )
+        return payload
 
-    def _decision(self, tool_name, args, next_intent, subgoal) -> Dict[str, Any]:
+    def _tool_args(self, tool_name: str, args: Dict[str, Any]) -> Dict[str, Any]:
+        allowed_args = {
+            "look": set(),
+            "move": {"direction"},
+            "scan": {"query"},
+            "pick_up": {"item"},
+            "unlock": {"target", "using"},
+            "interact": {"target"},
+        }
         return {
-            "perception": {
-                "summary": next_intent,
-                "task_relevant_facts": [next_intent],
-            },
-            "plan": {
-                "current_subgoal": subgoal,
-                "next_intent": next_intent,
-                "success_condition": "The selected tool call moves the agent closer to the goal.",
-            },
-            "tool_call": {
-                "name": tool_name,
-                "args": args,
-            },
+            key: value
+            for key, value in args.items()
+            if key in allowed_args.get(tool_name, set())
         }

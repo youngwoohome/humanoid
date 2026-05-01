@@ -25,14 +25,14 @@ class ToolRegistry:
             ToolSpec(
                 "pick_up",
                 "Pick up an item from the current location or nearby area.",
-                {"item": {"type": "string"}},
+                {"item": {"type": "string", "enum": ["key"]}},
             ),
             ToolSpec(
                 "unlock",
                 "Unlock a target using an item.",
                 {
-                    "target": {"type": "string"},
-                    "using": {"type": "string"},
+                    "target": {"type": "string", "enum": ["door"]},
+                    "using": {"type": "string", "enum": ["key"]},
                 },
             ),
             ToolSpec(

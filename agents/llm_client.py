@@ -1,4 +1,4 @@
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Type
 
 class LLMClient:
     def __init__(self, model: str = "gpt-4o-mini"):
@@ -6,7 +6,7 @@ class LLMClient:
 
         from openai import OpenAI
 
-        self.client = OpenAI()
+        self.client = OpenAI(timeout=30.0, max_retries=1)
         self.model = model
 
     def _load_env_file(self) -> None:
@@ -18,10 +18,11 @@ class LLMClient:
 
         load_dotenv()
 
-    def complete_json(self, messages: List[Dict[str, Any]]) -> str:
-        response = self.client.chat.completions.create(
+    def run_llm(self, messages: List[Dict[str, Any]], response_model: Type[Any]) -> Any:
+        response = self.client.beta.chat.completions.parse(
             model=self.model,
             messages=messages,
-            temperature=0.7,
+            response_format=response_model,
         )
-        return response.choices[0].message.content or ""
+        parsed = response.choices[0].message.parsed
+        return parsed

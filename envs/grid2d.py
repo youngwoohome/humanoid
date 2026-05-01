@@ -41,6 +41,7 @@ class Grid2DWorld(BaseEnvironment):
                 "position": list(self.agent_pos),
                 "inventory": self.inventory,
                 "visible_map": self._render_grid_lines(),
+                "available_moves": self._available_moves(),
                 "legend": {
                     "A": "agent",
                     "#": "wall",
@@ -196,6 +197,21 @@ class Grid2DWorld(BaseEnvironment):
         dr, dc = deltas[direction]
         r, c = self.agent_pos
         return (r + dr, c + dc)
+
+    def _available_moves(self) -> List[str]:
+        moves = []
+        for direction in ["north", "south", "east", "west"]:
+            next_pos = self._next_position(direction)
+            if next_pos is None:
+                continue
+            r, c = next_pos
+            target = self.grid[r][c]
+            if target == "#":
+                continue
+            if target == "D" and "key" not in self.inventory:
+                continue
+            moves.append(direction)
+        return moves
 
     def _nearby_objects(self) -> List[str]:
         r, c = self.agent_pos

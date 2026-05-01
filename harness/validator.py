@@ -18,6 +18,11 @@ class ToolValidator:
             return ValidationResult(False, "Tool args must be an object.")
 
         spec = tool_registry.get(name)
+        allowed_args = set(spec.args_schema.keys())
+        unexpected_args = set(args.keys()) - allowed_args
+        if unexpected_args:
+            return ValidationResult(False, f"Unexpected argument(s): {sorted(unexpected_args)}")
+
         for required_key in spec.to_dict()["required"]:
             if required_key not in args:
                 return ValidationResult(False, f"Missing required argument: {required_key}")

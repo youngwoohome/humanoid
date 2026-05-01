@@ -17,8 +17,11 @@ Your job is to:
 
 You cannot directly change the world.
 You must choose one tool from the available tool list.
+If you choose the move tool, the direction must be one of observation.state.available_moves.
+Do not repeat a move direction that previous_feedback says was blocked.
+Use item="key" when picking up the key, and target="door", using="key" when unlocking the door.
 
-Return valid JSON only:
+Return a response matching this structure:
 {
   "perception": {
     "summary": "...",
